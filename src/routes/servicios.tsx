@@ -22,7 +22,21 @@ const consult = [
   ["📈", "Decidir", "Feedback concreto para invertir tiempo, esfuerzo y dinero donde sí importa."],
 ];
 
-const weeks = ["Autoconciencia", "Emociones", "Escucha", "Empatía", "Conversaciones difíciles", "Hábitos", "Momentum"];
+const phases = [
+  ["Fase 1", "semanas 1–2", "Auto-conexión"],
+  ["Fase 2", "semanas 3–5", "Inter-conexión"],
+  ["Fase 3", "semanas 6–7", "Sostener los hábitos"],
+];
+
+const weeks = [
+  ["Pausar", "Regular el estrés y responder en lugar de reaccionar."],
+  ["Humanizar", "Simpatizar, humanizar y conectar con las demás personas."],
+  ["Observar", "Separar los hechos de nuestros juicios e interpretaciones."],
+  ["Empatizar", "Reconocer emociones propias y ajenas."],
+  ["Escuchar", "Comprender las necesidades humanas y saber escuchar."],
+  ["Comunicar", "Resolver conflictos y llegar a acuerdos."],
+  ["Motivarse", "Cultivar la motivación intrínseca."],
+];
 
 function Servicios() {
   return (

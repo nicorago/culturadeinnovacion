@@ -3,7 +3,7 @@ import hero from "@/assets/hero-team.jpg";
 import { Hand } from "@/components/site";
 
 export const Route = createFileRoute("/registro")({
-  validateSearch: (s: Record<string, unknown>) => ({ plan: typeof s.plan === "string" ? s.plan : "Startup" }),
+  validateSearch: (s: Record<string, unknown>) => ({ plan: typeof s["plan"] === "string" ? (s["plan"] as string) : "Startup" }),
   head: () => ({
     meta: [
       { title: "Crea tu cuenta — Brújula" },

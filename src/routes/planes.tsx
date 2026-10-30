@@ -5,7 +5,7 @@ export const Route = createFileRoute("/planes")({
   head: () => ({
     meta: [
       { title: "Planes de Brújula — Empieza gratis" },
-      { name: "description", content: "Elige tu plan de Brújula: Startup gratis, Plus por USD 19/mes o Empresarial a medida para equipos de innovación." },
+      { name: "description", content: "Elige tu plan de Brújula: Startup gratis, Plus o Empresarial a medida para equipos de innovación." },
       { property: "og:title", content: "Planes de Brújula — Empieza gratis" },
       { property: "og:description", content: "Product Discovery basado en evidencia. Empieza gratis y cambia de plan cuando lo necesites." },
       { property: "og:type", content: "product" },
@@ -17,8 +17,8 @@ export const Route = createFileRoute("/planes")({
 const coach = "Coach AI incluido: Product Discovery, Lean Startup, análisis de viabilidad y Outcome-based roadmaps.";
 const plans = [
   { name: "Startup", price: "Gratis", desc: "Para validar tu primera idea.", items: ["1 usuario", "1 idea", "Todo el flujo de discovery", coach], cta: "Empezar gratis", tilt: "md:-rotate-1", bg: "bg-card" },
-  { name: "Plus", price: "USD 19/mes", desc: "Para founders con varias ideas en marcha.", items: ["1 usuario", "Hasta 100 ideas", "Todo el flujo de discovery", coach], cta: "Elegir Plus", tilt: "", bg: "bg-card", featured: true },
-  { name: "Empresarial", price: "Precio a medida", desc: "Para equipos de innovación y producto. Te armamos una propuesta según tu equipo.", items: ["Varios usuarios y roles", "Ideas sin límite", "Onboarding acompañado y soporte prioritario", coach], cta: "Contactar a ventas", tilt: "md:rotate-1", bg: "bg-card" },
+  { name: "Plus", price: "Consúltanos", desc: "Para founders con varias ideas en marcha.", items: ["1 usuario", "Hasta 100 ideas", "Todo el flujo de discovery", coach], cta: "Elegir Plus", tilt: "", bg: "bg-card", featured: true },
+  { name: "Empresarial", price: "A medida · consúltanos", desc: "Para equipos de innovación y producto. Te armamos una propuesta según tu equipo.", items: ["Varios usuarios y roles", "Ideas sin límite", "Onboarding acompañado y soporte prioritario", coach], cta: "Contactar a ventas", tilt: "md:rotate-1", bg: "bg-card" },
 ];
 
 function Planes() {

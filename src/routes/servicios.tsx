@@ -83,16 +83,29 @@ function Servicios() {
           <h2 className="mt-4 text-4xl font-bold">Human Momentum 🧠💛</h2>
           <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
             Un programa de 7 semanas para entrenar la inteligencia emocional y la comunicación empática. Piénsalo como
-            un <span className="marker">gimnasio para la mente</span>: pequeñas prácticas que se vuelven hábitos.
+            un <span className="marker">gimnasio para la mente</span>: 15 minutos de práctica diaria guiada, una hora
+            de capacitación virtual cada semana y un workshop inicial de 4 horas con tu grupo.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            {weeks.map((w, i) => (
-              <span key={w} className={`sketch px-4 py-2 ${i % 3 === 0 ? "bg-highlight" : "bg-background"} ${i % 2 ? "rotate-1" : "-rotate-1"}`}>
-                <span className="font-hand text-lg text-accent">sem {i + 1}</span> {w}
+            {phases.map(([f, s, t], i) => (
+              <span key={f} className={`sketch bg-highlight px-4 py-2 ${i % 2 ? "rotate-1" : "-rotate-1"}`}>
+                <span className="font-hand text-lg text-accent">{f}</span> · {s}: <strong>{t}</strong>
               </span>
             ))}
           </div>
-          <p className="mt-3 text-xs text-muted-foreground">*Temas por semana ilustrativos.</p>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {weeks.map(([t, d], i) => (
+              <div key={t} className={`sketch bg-background p-4 ${i % 2 ? "rotate-1" : "-rotate-1"}`}>
+                <p className="font-hand text-lg text-accent">semana {i + 1}</p>
+                <p className="font-semibold">{t}</p>
+                <p className="text-sm text-muted-foreground">{d}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-sm text-muted-foreground">
+            Y te llevas certificado de participación, certificado de horas en Comunicación No Violenta y un libro
+            digital con la metodología.
+          </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <SketchButton href="https://humanmomentum.org/momentum" variant="accent">Para personas</SketchButton>
             <SketchButton href="https://humanmomentum.org/empresas" variant="ghost">Para empresas</SketchButton>

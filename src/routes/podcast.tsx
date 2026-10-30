@@ -50,7 +50,25 @@ function Podcast() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-5xl px-6 pb-16">
+        <Hand>⭐ episodio destacado</Hand>
+        <h2 className="mt-1 text-3xl font-bold">Con Christina Wodtke</h2>
+        <p className="mt-2 text-muted-foreground">Autora de <em>Radical Focus</em> y referente mundial en OKRs y producto.</p>
+        <div className="sketch sketch-shadow mt-6 -rotate-1 overflow-hidden bg-highlight p-2">
+          <iframe
+            title="Episodio con Christina Wodtke"
+            src="https://open.spotify.com/embed/episode/7mZjqPUe2lz5lvY3FNpPtj"
+            width="100%"
+            height="152"
+            loading="lazy"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            className="rounded-xl border-0"
+          />
+        </div>
+      </section>
+
       <section className="mx-auto max-w-5xl px-6">
+
         <div className="sketch sketch-shadow overflow-hidden bg-card p-2">
           <iframe
             title="Podcast Cultura de Innovación en Spotify"

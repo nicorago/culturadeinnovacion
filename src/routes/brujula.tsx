@@ -28,7 +28,7 @@ const steps = [
 
 const plans = [
   ["Startup", "Gratis", "Para validar tu primera idea.", "ghost"],
-  ["Plus", "USD 19/mes", "Para founders con varias ideas en marcha.", "solid"],
+  ["Plus", "Consúltanos", "Para founders con varias ideas en marcha.", "solid"],
   ["Empresarial", "A medida", "Para equipos de innovación y producto.", "accent"],
 ] as const;
 

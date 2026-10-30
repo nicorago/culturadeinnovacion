@@ -48,6 +48,9 @@ export function Header() {
         <Link to="/brujula" className={nav} activeProps={{ className: "underline" }}>
           Brújula
         </Link>
+        <Link to="/servicios" className={nav} activeProps={{ className: "underline" }}>
+          Servicios
+        </Link>
         <Link to="/podcast" className={nav} activeProps={{ className: "underline" }}>
           Podcast
         </Link>

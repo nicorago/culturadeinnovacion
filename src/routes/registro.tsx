@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import hero from "@/assets/hero-team.jpg";
 import { Hand } from "@/components/site";
 
@@ -27,18 +27,18 @@ function Field({ label, type, placeholder }: { label: string; type: string; plac
 
 function Registro() {
   const { plan } = Route.useSearch();
-  const navigate = useNavigate();
   return (
     <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 pt-6 md:grid-cols-2">
       <div className="hidden md:block">
         <img src={hero} alt="Equipo trabajando alrededor de una brújula dibujada" width={1280} height={960} className="w-full mix-blend-multiply" />
         <p className="text-center font-hand text-3xl">tu primera oportunidad te espera →</p>
       </div>
+      {/* The CTA is a real link (not a form submit) so it opens Brújula even if the page
+          has not finished loading its interactive code yet. */}
       <form
         className="sketch sketch-shadow bg-card p-8 md:p-10"
         onSubmit={(e) => {
           e.preventDefault();
-          navigate({ to: "/app" });
         }}
       >
         <span className="sketch inline-block bg-highlight px-3 py-1 text-sm font-semibold">Plan {plan}</span>
@@ -49,9 +49,12 @@ function Registro() {
           <Field label="tu correo" type="email" placeholder="nicolas@empresa.com" />
           <Field label="tu celular" type="tel" placeholder="+593 99 123 4567" />
         </div>
-        <button type="submit" className="sketch wobble mt-8 w-full bg-primary py-3 font-semibold text-primary-foreground">
+        <Link
+          to="/app"
+          className="sketch wobble mt-8 block w-full bg-primary py-3 text-center font-semibold text-primary-foreground"
+        >
           Empezar a usar Brújula →
-        </button>
+        </Link>
         <p className="mt-4 text-center text-sm text-muted-foreground">
           ¿Ya tienes cuenta? <span className="underline decoration-accent decoration-2">Entrar</span>
         </p>

@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BrujulaRouteImport } from './routes/brujula'
+import { Route as PodcastRouteImport } from './routes/podcast'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrujulaRoute = BrujulaRouteImport.update({
+  id: '/brujula',
+  path: '/brujula',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PodcastRoute = PodcastRouteImport.update({
+  id: '/podcast',
+  path: '/podcast',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/brujula': typeof BrujulaRoute
+  '/podcast': typeof PodcastRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/brujula': typeof BrujulaRoute
+  '/podcast': typeof PodcastRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/brujula': typeof BrujulaRoute
+  '/podcast': typeof PodcastRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/brujula' | '/podcast'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/brujula' | '/podcast'
+  id: '__root__' | '/' | '/brujula' | '/podcast'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BrujulaRoute: typeof BrujulaRoute
+  PodcastRoute: typeof PodcastRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brujula': {
+      id: '/brujula'
+      path: '/brujula'
+      fullPath: '/brujula'
+      preLoaderRoute: typeof BrujulaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/podcast': {
+      id: '/podcast'
+      path: '/podcast'
+      fullPath: '/podcast'
+      preLoaderRoute: typeof PodcastRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BrujulaRoute: BrujulaRoute,
+  PodcastRoute: PodcastRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

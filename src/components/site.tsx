@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 export const LINKS = {
   brujula: "https://brujula.culturadeinnovacion.com/",
-  planes: "https://brujula.culturadeinnovacion.com/planes",
+  planes: "/planes",
   spotify: "https://open.spotify.com/show/6097vhyGcbi3YMUUQUANE1?si=7102920dd3ad4597",
   youtube: "https://www.youtube.com/@culturadeinnovacion",
 };
@@ -25,8 +25,7 @@ export function SketchButton({
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noreferrer"
+      {...(href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
       className={`sketch sketch-shadow wobble inline-flex items-center gap-2 px-6 py-3 font-semibold ${styles}`}
     >
       {children}
@@ -52,7 +51,7 @@ export function Header() {
         <Link to="/podcast" className={nav} activeProps={{ className: "underline" }}>
           Podcast
         </Link>
-        <a href={LINKS.planes} target="_blank" rel="noreferrer" className="sketch hidden bg-primary px-4 py-2 font-semibold text-primary-foreground sm:inline-block">
+        <a href={LINKS.planes} className="sketch hidden bg-primary px-4 py-2 font-semibold text-primary-foreground sm:inline-block">
           Probar gratis
         </a>
       </nav>

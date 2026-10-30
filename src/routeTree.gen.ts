@@ -10,12 +10,20 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as BrujulaRouteImport } from './routes/brujula'
+import { Route as PlanesRouteImport } from './routes/planes'
 import { Route as PodcastRouteImport } from './routes/podcast'
+import { Route as RegistroRouteImport } from './routes/registro'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BrujulaRoute = BrujulaRouteImport.update({
@@ -23,40 +31,69 @@ const BrujulaRoute = BrujulaRouteImport.update({
   path: '/brujula',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlanesRoute = PlanesRouteImport.update({
+  id: '/planes',
+  path: '/planes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PodcastRoute = PodcastRouteImport.update({
   id: '/podcast',
   path: '/podcast',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegistroRoute = RegistroRouteImport.update({
+  id: '/registro',
+  path: '/registro',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRoute
   '/brujula': typeof BrujulaRoute
+  '/planes': typeof PlanesRoute
   '/podcast': typeof PodcastRoute
+  '/registro': typeof RegistroRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app': typeof AppRoute
   '/brujula': typeof BrujulaRoute
+  '/planes': typeof PlanesRoute
   '/podcast': typeof PodcastRoute
+  '/registro': typeof RegistroRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRoute
   '/brujula': typeof BrujulaRoute
+  '/planes': typeof PlanesRoute
   '/podcast': typeof PodcastRoute
+  '/registro': typeof RegistroRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/brujula' | '/podcast'
+  fullPaths: '/' | '/app' | '/brujula' | '/planes' | '/podcast' | '/registro'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/brujula' | '/podcast'
-  id: '__root__' | '/' | '/brujula' | '/podcast'
+  to: '/' | '/app' | '/brujula' | '/planes' | '/podcast' | '/registro'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/brujula'
+    | '/planes'
+    | '/podcast'
+    | '/registro'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRoute
   BrujulaRoute: typeof BrujulaRoute
+  PlanesRoute: typeof PlanesRoute
   PodcastRoute: typeof PodcastRoute
+  RegistroRoute: typeof RegistroRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,11 +105,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/brujula': {
       id: '/brujula'
       path: '/brujula'
       fullPath: '/brujula'
       preLoaderRoute: typeof BrujulaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/planes': {
+      id: '/planes'
+      path: '/planes'
+      fullPath: '/planes'
+      preLoaderRoute: typeof PlanesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/podcast': {
@@ -82,13 +133,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PodcastRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/registro': {
+      id: '/registro'
+      path: '/registro'
+      fullPath: '/registro'
+      preLoaderRoute: typeof RegistroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRoute,
   BrujulaRoute: BrujulaRoute,
+  PlanesRoute: PlanesRoute,
   PodcastRoute: PodcastRoute,
+  RegistroRoute: RegistroRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

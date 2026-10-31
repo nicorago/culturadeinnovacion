@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import path from "@/assets/discovery-path.jpg";
 import { Hand, LINKS, SketchButton } from "@/components/site";
 
@@ -26,11 +26,12 @@ const steps = [
   ["Decide con evidencia", "Invierte tiempo y dinero donde los clientes ya te dieron señales reales."],
 ];
 
+const coach = "Coach AI incluido: Product Discovery, Lean Startup, análisis de viabilidad y Outcome-based roadmaps.";
 const plans = [
-  ["Startup", "Gratis", "Para validar tu primera idea.", "ghost"],
-  ["Plus", "Consúltanos", "Para founders con varias ideas en marcha.", "solid"],
-  ["Empresarial", "A medida", "Para equipos de innovación y producto.", "accent"],
-] as const;
+  { name: "Startup", price: "Gratis", desc: "Para validar tu primera idea.", items: ["1 usuario", "1 idea", "Todo el flujo de discovery", coach], cta: "Empezar gratis", tilt: "md:-rotate-1" },
+  { name: "Plus", price: "Consúltanos", desc: "Para founders con varias ideas en marcha.", items: ["1 usuario", "Hasta 100 ideas", "Todo el flujo de discovery", coach], cta: "Elegir Plus", tilt: "", featured: true },
+  { name: "Empresarial", price: "A medida · consúltanos", desc: "Para equipos de innovación y producto. Te armamos una propuesta según tu equipo.", items: ["Varios usuarios y roles", "Ideas sin límite", "Onboarding acompañado y soporte prioritario", coach], cta: "Contactar a ventas", tilt: "md:rotate-1" },
+];
 
 function Brujula() {
   return (

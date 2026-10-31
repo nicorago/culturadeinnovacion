@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the illustrative discovery workflow client-side and explicitly marked as a demo; simulated artifact generation must never imply a real model call or validated customer evidence.
+- Store shared discovery example data independently of routes so the interactive workflow and animated public walkthrough use the same case.
+- Use an un-nested app child route for full-screen discovery screens to preserve the existing dashboard without a layout migration.

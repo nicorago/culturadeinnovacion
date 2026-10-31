@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import path from "@/assets/discovery-path.jpg";
+import { SketchAction } from "@/components/discovery-controls";
+import { Lightbulb } from "lucide-react";
 
 export const Route = createFileRoute("/app")({
   head: () => ({
@@ -9,6 +11,7 @@ export const Route = createFileRoute("/app")({
       { property: "og:title", content: "Mis oportunidades — Brújula" },
       { property: "og:description", content: "Gestiona tu Product Discovery basado en evidencia." },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -65,9 +68,7 @@ function AppHome() {
             <h1 className="text-4xl font-extrabold md:text-5xl">
               Mis <span className="marker">oportunidades</span>
             </h1>
-            <button className="sketch sketch-shadow wobble bg-primary px-5 py-3 font-semibold text-primary-foreground">
-              💡 Tengo una idea
-            </button>
+            <SketchAction asChild className="sketch-shadow wobble"><Link to="/app/idea"><Lightbulb />Tengo una idea</Link></SketchAction>
           </div>
 
           <ul className="mt-8 space-y-5">

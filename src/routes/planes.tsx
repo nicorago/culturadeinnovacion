@@ -9,6 +9,7 @@ export const Route = createFileRoute("/planes")({
       { property: "og:title", content: "Planes de Brújula — Empieza gratis" },
       { property: "og:description", content: "Product Discovery basado en evidencia. Empieza gratis y cambia de plan cuando lo necesites." },
       { property: "og:type", content: "product" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Planes,

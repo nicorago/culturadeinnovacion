@@ -12,6 +12,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Cultura de Innovación — Innovación basada en evidencia" },
       { property: "og:description", content: "Brújula, la plataforma de Product Discovery, y el podcast Cultura de Innovación con Nicolás Ramírez." },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,

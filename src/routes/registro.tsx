@@ -11,6 +11,7 @@ export const Route = createFileRoute("/registro")({
       { property: "og:title", content: "Crea tu cuenta — Brújula" },
       { property: "og:description", content: "Empieza a validar ideas con evidencia de tus clientes." },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Registro,

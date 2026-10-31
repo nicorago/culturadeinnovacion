@@ -10,6 +10,7 @@ export const Route = createFileRoute("/podcast")({
       { property: "og:title", content: "Podcast Cultura de Innovación — con Nicolás Ramírez" },
       { property: "og:description", content: "Cómo se construyen productos que importan, contado por quienes lo hacen." },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Podcast,

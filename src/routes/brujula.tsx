@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import path from "@/assets/discovery-path.jpg";
 import { Hand, LINKS, SketchButton } from "@/components/site";
+import { DiscoveryPreview } from "@/components/discovery-preview";
 
 export const Route = createFileRoute("/brujula")({
   head: () => ({
@@ -10,6 +11,7 @@ export const Route = createFileRoute("/brujula")({
       { property: "og:title", content: "Brújula — Product Discovery basado en evidencia" },
       { property: "og:description", content: "La plataforma de Cultura de Innovación para decidir en qué invertir con evidencia de tus clientes." },
       { property: "og:type", content: "product" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Brujula,
@@ -52,6 +54,8 @@ function Brujula() {
       </section>
 
       <img src={path} alt="Camino de descubrimiento dibujado a mano" width={1600} height={800} className="mx-auto mt-10 w-full max-w-5xl px-6 mix-blend-multiply" />
+
+      <DiscoveryPreview />
 
       <section className="mx-auto max-w-6xl px-6 py-16">
         <h2 className="text-3xl font-bold md:text-4xl">El camino, paso a paso</h2>

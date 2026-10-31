@@ -4,6 +4,7 @@ export const ideaQuestions = [
   { label: "Gorila", question: "¿Cómo lo resuelve hoy?", answer: "Doy vueltas, sigo a alguien que parece salir o le pregunto al guardia. A veces termino estacionando lejos de la entrada." },
   { label: "Solución", question: "¿Qué solución tienes en mente?", answer: "Una guía que me muestre dónde hay espacios disponibles cerca de la entrada que necesito." },
   { label: "Diferenciadores", question: "¿Qué sería valioso y distinto?", answer: "Información confiable en el momento, sin descargar una app ni usar el celular mientras conduzco." },
+  { label: "Diferenciadores", question: "¿Y en qué más podría ser mejor?", answer: "Elegir un espacio cerca de mi destino, no solo el primero que encuentre." },
   { label: "Nombre", question: "¿Cómo llamaremos a esta oportunidad?", answer: "Encontrar parqueo sin dar vueltas" },
 ];
 
@@ -43,7 +44,7 @@ export const initialSolutions = [
 
 export function makeInitialArtifacts(answers: string[], interview: string[]) {
   return {
-    title: answers[5]?.trim() || ideaQuestions[5].answer,
+    title: answers[6]?.trim() || ideaQuestions[6].answer,
     client: answers[0]?.trim() || "Cliente por explorar",
     problem: answers[1]?.trim() || "Problema por explorar",
     outcome: initialOutcome,

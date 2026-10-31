@@ -9,7 +9,7 @@ describe("Initial self-interview artifacts", () => {
   });
   it("uses the user's edited opportunity and client in the generated draft", () => {
     const answers = ideaQuestions.map(q => q.answer);
-    answers[5] = "Parqueo para familias";
+    answers[6] = "Parqueo para familias";
     answers[0] = "Familias que llegan en auto";
     const result = makeInitialArtifacts(answers, ["Ayer tardé 15 minutos"]);
     expect(result.title).toBe("Parqueo para familias");

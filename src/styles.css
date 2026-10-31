@@ -64,7 +64,7 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }
-  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: 0; }
 }
 
 /* Sketchy hand-drawn box */
@@ -83,4 +83,10 @@
 @utility wobble {
   transition: transform 0.25s ease;
   &:hover { transform: rotate(-1.5deg) translateY(-2px); }
+}
+
+.discovery-progress { transition: width 350ms ease; }
+.ost-stem { width: 2px; height: 30px; background: var(--border); margin: 0 auto; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }

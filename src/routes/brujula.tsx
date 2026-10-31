@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import path from "@/assets/discovery-path.jpg";
 import { Hand, LINKS, SketchButton } from "@/components/site";
 
@@ -26,11 +26,12 @@ const steps = [
   ["Decide con evidencia", "Invierte tiempo y dinero donde los clientes ya te dieron señales reales."],
 ];
 
+const coach = "Coach AI incluido: Product Discovery, Lean Startup, análisis de viabilidad y Outcome-based roadmaps.";
 const plans = [
-  ["Startup", "Gratis", "Para validar tu primera idea.", "ghost"],
-  ["Plus", "Consúltanos", "Para founders con varias ideas en marcha.", "solid"],
-  ["Empresarial", "A medida", "Para equipos de innovación y producto.", "accent"],
-] as const;
+  { name: "Startup", price: "Gratis", desc: "Para validar tu primera idea.", items: ["1 usuario", "1 idea", "Todo el flujo de discovery", coach], cta: "Empezar gratis", tilt: "md:-rotate-1" },
+  { name: "Plus", price: "Consúltanos", desc: "Para founders con varias ideas en marcha.", items: ["1 usuario", "Hasta 100 ideas", "Todo el flujo de discovery", coach], cta: "Elegir Plus", tilt: "", featured: true },
+  { name: "Empresarial", price: "A medida · consúltanos", desc: "Para equipos de innovación y producto. Te armamos una propuesta según tu equipo.", items: ["Varios usuarios y roles", "Ideas sin límite", "Onboarding acompañado y soporte prioritario", coach], cta: "Contactar a ventas", tilt: "md:rotate-1" },
+];
 
 function Brujula() {
   return (
@@ -70,21 +71,34 @@ function Brujula() {
           <h2 className="text-3xl font-bold md:text-4xl">Planes</h2>
           <p className="mt-2 font-hand text-2xl text-accent">empieza gratis, cambia cuando lo necesites</p>
         </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {plans.map(([name, price, desc, v]) => (
-            <div key={name} className={`sketch bg-card p-8 ${v === "solid" ? "sketch-shadow" : ""}`}>
-              <p className="font-semibold">{name}</p>
-              <p className="mt-2 font-display text-3xl font-bold">{price}</p>
-              <p className="mt-2 text-muted-foreground">{desc}</p>
-              <p className="mt-4 text-sm">✓ Todo el flujo de discovery<br />✓ Coach AI incluido</p>
-              <div className="mt-6">
-                <SketchButton href={LINKS.planes} variant={v}>
-                  {name === "Empresarial" ? "Contactar" : "Elegir"}
-                </SketchButton>
-              </div>
+        <div className="mt-14 grid items-start gap-8 md:grid-cols-3">
+          {plans.map((p) => (
+            <div key={p.name} className={`relative sketch bg-card p-8 ${p.tilt} ${p.featured ? "sketch-shadow md:-mt-4" : ""}`}>
+              {p.featured && (
+                <span className="sketch absolute -top-4 left-6 bg-highlight px-3 py-1 font-hand text-xl">¡recomendado!</span>
+              )}
+              <p className="font-semibold">{p.name}</p>
+              <p className="mt-2 font-display text-3xl font-bold">{p.price}</p>
+              <p className="mt-2 text-sm text-muted-foreground">{p.desc}</p>
+              <ul className="mt-6 space-y-3 text-sm">
+                {p.items.map((i) => (
+                  <li key={i} className="flex gap-2">
+                    <span className="font-hand text-xl leading-none text-accent">✓</span>
+                    {i}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to="/registro"
+                search={{ plan: p.name }}
+                className={`sketch wobble mt-8 block py-3 text-center font-semibold ${p.featured ? "bg-primary text-primary-foreground" : "bg-background"}`}
+              >
+                {p.cta}
+              </Link>
             </div>
           ))}
         </div>
+        <p className="mt-10 text-center font-hand text-2xl text-muted-foreground">sin tarjeta de crédito para empezar ✏️</p>
       </section>
     </>
   );

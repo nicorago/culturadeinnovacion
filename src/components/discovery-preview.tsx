@@ -1,15 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  Check,
-  Compass,
-  MessageCircle,
-  Pause,
-  Play,
-  Wand2,
-  Lightbulb,
-} from "lucide-react";
+import { Check, Compass, MessageCircle, Pause, Play, Wand2, Lightbulb } from "lucide-react";
 import { SketchAction } from "@/components/discovery-controls";
 import {
   ideaQuestions,
@@ -42,12 +32,6 @@ export function DiscoveryPreview() {
           </p>
           <h2 className="mt-2 text-3xl font-bold">Brújula, en movimiento.</h2>
         </div>
-        <SketchAction asChild variant="outline">
-          <Link to="/app/idea">
-            Explorar el ejemplo
-            <ArrowRight />
-          </Link>
-        </SketchAction>
       </div>
       <div
         className="sketch sketch-shadow overflow-hidden bg-card"

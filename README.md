@@ -1,29 +1,37 @@
-# Welcome to your Lovable project
+# Cultura de Innovación
 
-This project was built with [Lovable](https://lovable.dev).
+Sitio web de Cultura de Innovación: Brújula, el podcast y los servicios. Construido con **TanStack Start v1** (React 19 + Vite) y **Tailwind CSS v4**, desplegado en **Cloudflare Workers**. Guía detallada para agentes/desarrolladores: `CDILOVABLECLAUDE.md`.
 
-## Build with Lovable
+## Requisitos
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+- [Bun](https://bun.sh) 1.x (o Node.js 22+ con npm)
+- Cuenta de Cloudflare (solo para desplegar)
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Instalar y correr en local
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+bun install
+bun run dev        # http://localhost:8080
 ```
 
-## Built with
+## Tests, lint y build
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+```sh
+bun run test       # Vitest
+bun run lint       # ESLint + Prettier
+bun run build      # genera .output/ (Worker + archivos estáticos)
+bun run preview    # sirve el build localmente
+```
+
+## Desplegar en Cloudflare Workers
+
+La configuración está en `wrangler.jsonc`. El build usa Nitro con el preset `cloudflare-module` y deja el Worker en `.output/server` y los assets en `.output/public`.
+
+```sh
+bunx wrangler login     # una sola vez
+bun run deploy          # = vite build && wrangler deploy
+```
+
+Para usar el dominio propio, en el panel de Cloudflare abre el Worker `culturadeinnovacion` → Settings → Domains & Routes → Add Custom Domain (`culturadeinnovacion.com`). El dominio debe estar gestionado en Cloudflare.
+
+Para desplegar automáticamente desde GitHub, conecta el repositorio en Cloudflare (Workers → Create → Import a repository) con build command `bun run build` y deploy command `bunx wrangler deploy`.

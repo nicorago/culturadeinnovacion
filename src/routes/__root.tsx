@@ -4,15 +4,13 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
-  useRouterState,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header, Footer } from "@/components/site";
 
 function NotFoundComponent() {
@@ -20,9 +18,14 @@ function NotFoundComponent() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <p className="mt-2 font-hand text-2xl text-muted-foreground">Esta página se perdió en el mapa.</p>
+        <p className="mt-2 font-hand text-2xl text-muted-foreground">
+          Esta página se perdió en el mapa.
+        </p>
         <div className="mt-6">
-          <Link to="/" className="sketch inline-block bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">
+          <Link
+            to="/"
+            className="sketch inline-block bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+          >
             Volver al inicio
           </Link>
         </div>
@@ -34,9 +37,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -52,7 +52,9 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
           >
             Reintentar
           </button>
-          <a href="/" className="sketch px-4 py-2 text-sm">Inicio</a>
+          <a href="/" className="sketch px-4 py-2 text-sm">
+            Inicio
+          </a>
         </div>
       </div>
     </div>
@@ -65,7 +67,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Cultura de Innovación" },
-      { name: "description", content: "Innovación basada en evidencia con clientes: Brújula y el podcast Cultura de Innovación." },
+      {
+        name: "description",
+        content:
+          "Innovación basada en evidencia con clientes: Brújula y el podcast Cultura de Innovación.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Cultura de Innovación" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -103,15 +109,13 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const inApp = pathname.startsWith("/app");
   return (
     <QueryClientProvider client={queryClient}>
-      {!inApp && <Header />}
+      <Header />
       <main>
         <Outlet />
       </main>
-      {!inApp && <Footer />}
+      <Footer />
     </QueryClientProvider>
   );
 }

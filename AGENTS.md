@@ -9,8 +9,9 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep the illustrative discovery workflow client-side and explicitly marked as a demo; simulated artifact generation must never imply a real model call or validated customer evidence.
-- Store shared discovery example data independently of routes so the interactive workflow and animated public walkthrough use the same case.
+- Keep the walkthrough's simulated artifact generation illustrative; it must never imply a real model call or validated customer evidence.
+- Store shared discovery example data independently of routes so the walkthrough stays decoupled from page code.
 - Render the public product walkthrough as accessible animated interface screens with pause and scene controls, rather than a generated video, to keep the demo faithful to the product and avoid video-generation cost.
-- Use an un-nested app child route for full-screen discovery screens to preserve the existing dashboard without a layout migration.
-- Plan CTAs and "Entrar" link to the real Brújula app (brujula.culturadeinnovacion.com/registro?plan=… and /login); the in-site /app dashboard is a design demo only, reached via the walkthrough.
+- No in-site product demo or sign-up routes: the site must not collect personal data.
+- Build with standard Vite + TanStack Start and deploy to Cloudflare Workers via nitro + wrangler; no Lovable packages, so the repo runs anywhere.
+- Plan CTAs and "Entrar" link to the real Brújula app (brujula.culturadeinnovacion.com/registro?plan=… and /login) and open in a new tab.

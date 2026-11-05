@@ -7,7 +7,9 @@ Sitio web de **Cultura de Innovación** (empresa de Nicolás Ramírez) que prese
 
 Público principal: directores y gerentes de innovación y producto. También PMs, gerentes generales y emprendedores que validan ideas.
 
-Este proyecto se creó en Lovable y está sincronizado con GitHub. Lee también `AGENTS.md`.
+Este proyecto se creó en Lovable y ya no depende de Lovable: es un proyecto estándar Vite + TanStack Start que se despliega en Cloudflare Workers con wrangler. Lee también `AGENTS.md` y `README.md`.
+
+Este sitio **no pide ni guarda datos personales**: no hay registro propio ni demo del producto. Todo registro/login ocurre en la app real de Brújula.
 
 ---
 
@@ -16,14 +18,15 @@ Este proyecto se creó en Lovable y está sincronizado con GitHub. Lee también 
 | Capa | Tecnología |
 | --- | --- |
 | Framework | TanStack Start v1 (React 19, SSR, server functions) |
-| Build | Vite (config vía `@lovable.dev/vite-tanstack-config` en `vite.config.ts`) |
+| Build | Vite estándar (`vite.config.ts`: tanstackStart, @vitejs/plugin-react, @tailwindcss/vite, vite-tsconfig-paths, nitro solo en build) |
 | Router | TanStack Router basado en archivos (`src/routes/`) |
 | Estilos | Tailwind CSS v4, configurado solo en `src/styles.css` (`@theme`, sin `tailwind.config.js`) |
 | UI | shadcn/ui (Radix) + lucide-react |
 | Datos | @tanstack/react-query v5 (no hay backend/base de datos todavía) |
 | Formularios | react-hook-form + zod |
 | Tests | Vitest + Testing Library + jsdom (`src/test/`) |
-| Runtime de producción | Edge (Cloudflare Workers / workerd), no Node |
+| Runtime de producción | Cloudflare Workers (workerd), no Node. Nitro preset `cloudflare-module` → `.output/` |
+| Despliegue | wrangler (`wrangler.jsonc`) |
 | Lenguaje | TypeScript, alias `@/` → `src/` |
 
 ### Comandos
@@ -33,6 +36,7 @@ bun run dev        # servidor de desarrollo
 bun run test       # vitest run
 bun run build      # build de producción
 bun run lint
+bun run deploy     # build + wrangler deploy (requiere `bunx wrangler login`)
 ```
 
 ---
@@ -42,33 +46,31 @@ bun run lint
 ```text
 src/
 ├── routes/
-│   ├── __root.tsx        # Layout global, <head>, fuentes Google, Header/Footer (ocultos en /app/*)
+│   ├── __root.tsx        # Layout global, <head>, fuentes Google, Header/Footer
 │   ├── index.tsx         # Home: propuesta de valor, Brújula + Podcast, audiencias, CTA
 │   ├── brujula.tsx       # Landing Brújula: flujo de discovery, walkthrough animado, planes completos
 │   ├── planes.tsx        # Planes Startup / Plus / Empresarial (sin precios)
 │   ├── podcast.tsx       # Podcast + episodio destacado con Christina Wodtke
-│   ├── servicios.tsx     # Consultoría Discovery + Human Momentum
-│   ├── registro.tsx      # Registro demo (nombre, email, celular)
-│   ├── app.tsx           # DEMO: dashboard "Mis oportunidades"
-│   └── app_.idea.tsx     # DEMO: flujo "Tengo una idea" a pantalla completa (/app/idea)
+│   └── servicios.tsx     # Consultoría Discovery + Human Momentum
 ├── components/
 │   ├── site.tsx                # Header, Footer, SketchButton, Hand, constante LINKS
 │   ├── discovery-preview.tsx   # Walkthrough animado de 5 escenas (play/pausa/escenas)
-│   ├── discovery-workflow.tsx  # Flujo interactivo: idea → hipótesis → entrevista → artefactos AI → OST → soluciones → experimento
-│   ├── discovery-controls.tsx  # SketchAction, EditableText, HypothesisTag
+│   ├── discovery-controls.tsx  # SketchAction y controles usados por el walkthrough
 │   └── ui/                     # shadcn/ui
 ├── lib/
-│   └── discovery-demo.ts       # Datos del ejemplo (parqueo en centros comerciales) compartidos por demo y walkthrough
+│   └── discovery-demo.ts       # Datos del ejemplo (parqueo en centros comerciales) usados por el walkthrough
 ├── assets/                     # Ilustraciones sketchy (hero-team, podcast-sketch, discovery-path)
 ├── styles.css                  # Tokens de diseño y utilidades sketchy
+├── server.ts / start.ts       # Entrada SSR con página de error y middlewares
 └── routeTree.gen.ts            # GENERADO — no editar
 ```
 
 ### Reglas técnicas
 - Usar solo `@tanstack/react-router` (`Link`, `useNavigate`, `createFileRoute`). Nunca `react-router-dom`, ni `src/pages`, ni `App.tsx`.
 - Cada ruta nueva = archivo en `src/routes/`. Cada página debe definir su propio `head()` (title, description, og:title, og:description).
-- `app_.idea.tsx` es una ruta no anidada (el `_` evita heredar el layout de `app.tsx`).
-- El demo de discovery es 100% cliente y está marcado como demo: la "AI" es simulada (no hay llamadas a modelos) y la autoentrevista nunca cuenta como evidencia real.
+- No existen rutas `/app`, `/app/idea` ni `/registro`: no volver a crearlas. El sitio no debe pedir ni guardar datos personales.
+- El walkthrough de `/brujula` es ilustrativo: la "AI" es simulada y la autoentrevista nunca cuenta como evidencia real.
+- Sin dependencias de Lovable (`@lovable.dev/*`, `lovable-tagger`): no agregarlas.
 - Los datos del ejemplo viven en `src/lib/discovery-demo.ts`, no en las rutas.
 - El walkthrough es animación de interfaz accesible (no video), respeta `prefers-reduced-motion`.
 - Código de servidor corre en workerd: evitar APIs exclusivas de Node.
@@ -100,20 +102,21 @@ Simple, minimalista, cálido y algo divertido, con dibujos hechos a mano.
 - **Enlaces a la app real:**
   - "Empezar gratis" / "Elegir Plus" / "Contactar a ventas" → `https://brujula.culturadeinnovacion.com/registro?plan=startup|plus|empresarial`
   - "Entrar" → `https://brujula.culturadeinnovacion.com/login`
-  - `/app` y `/app/idea` de este sitio son **solo demo de diseño**, accesibles desde el walkthrough ("Explorar el ejemplo").
+  - Los enlaces externos se abren en pestaña nueva (`target="_blank" rel="noreferrer"`).
 - **Contacto:** `hola@culturadeinnovacion.com` en todos los CTA de contacto.
 - **Human Momentum:** 7 semanas reales — Pausar, Humanizar, Observar, Empatizar, Escuchar, Comunicar, Motivarse. Fases: 1 Auto-conexión (sem. 1–2), 2 Inter-conexión (sem. 3–5), 3 Sostener los hábitos (sem. 6–7). 15 min de práctica diaria, 1 h de capacitación semanal, workshop de 4 h. Entregables: certificado de participación, certificado de horas en Comunicación No Violenta, libro digital.
 - **Podcast:** conducido por Nicolás Ramírez.
   - Spotify: https://open.spotify.com/show/6097vhyGcbi3YMUUQUANE1
   - YouTube: https://www.youtube.com/@culturadeinnovacion
   - Episodio destacado con Christina Wodtke: https://open.spotify.com/episode/7mZjqPUe2lz5lvY3FNpPtj
-- **Ejemplo del demo:** contenido inventado autorizado (idea de parqueo en centros comerciales, persona "Valeria"). Las entrevistas simuladas son hipótesis, no evidencia validada.
+- **Ejemplo del walkthrough:** contenido inventado autorizado (idea de parqueo en centros comerciales, persona "Valeria"). Las entrevistas simuladas son hipótesis, no evidencia validada.
 
 ---
 
-## 5. Trabajo con Git y Lovable
+## 5. Despliegue y Git
 
-- La rama conectada se sincroniza en ambos sentidos con Lovable: mantenerla siempre compilando.
-- No hacer `git push --force` ni reescribir commits ya publicados (rebase, amend, squash): se pierde el historial en Lovable.
+- Despliegue: `bun run deploy` (o `bun run build && bunx wrangler deploy`). Nitro genera `.output/server/wrangler.json`; `wrangler.jsonc` en la raíz define nombre, flags y assets.
+- Dominio: configurar `culturadeinnovacion.com` como Custom Domain del Worker en el panel de Cloudflare.
+- Si la sincronización con Lovable sigue activa: no hacer `git push --force` ni reescribir commits publicados.
 - No editar `src/routeTree.gen.ts` a mano.
-- Antes de terminar un cambio: `bun run test` y `bun run build`.
+- Antes de terminar un cambio: `bun run test`, `bun run lint` y `bun run build`.

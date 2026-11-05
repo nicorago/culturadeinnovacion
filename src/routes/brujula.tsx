@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import path from "@/assets/discovery-path.jpg";
 import { Hand, LINKS, SketchButton } from "@/components/site";
 import { DiscoveryPreview } from "@/components/discovery-preview";
@@ -49,7 +49,7 @@ function Brujula() {
         </p>
         <div className="mt-8 flex justify-center gap-4">
           <SketchButton href={LINKS.planes}>Empezar gratis →</SketchButton>
-          <SketchButton href={LINKS.brujula} variant="ghost">Entrar</SketchButton>
+          <SketchButton href={LINKS.login} variant="ghost">Entrar</SketchButton>
         </div>
       </section>
 
@@ -92,13 +92,12 @@ function Brujula() {
                   </li>
                 ))}
               </ul>
-              <Link
-                to="/registro"
-                search={{ plan: p.name }}
+              <a
+                href={LINKS.registro(p.name)}
                 className={`sketch wobble mt-8 block py-3 text-center font-semibold ${p.featured ? "bg-primary text-primary-foreground" : "bg-background"}`}
               >
                 {p.cta}
-              </Link>
+              </a>
             </div>
           ))}
         </div>

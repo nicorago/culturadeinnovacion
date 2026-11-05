@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 
 export const LINKS = {
   brujula: "https://brujula.culturadeinnovacion.com/",
+  login: "https://brujula.culturadeinnovacion.com/login",
+  registro: (plan: string) => `https://brujula.culturadeinnovacion.com/registro?plan=${plan.toLowerCase()}`,
   planes: "/planes",
   spotify: "https://open.spotify.com/show/6097vhyGcbi3YMUUQUANE1?si=7102920dd3ad4597",
   youtube: "https://www.youtube.com/@culturadeinnovacion",

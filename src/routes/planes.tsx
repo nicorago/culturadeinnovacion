@@ -51,6 +51,8 @@ function Planes() {
             </ul>
             <a
                 href={LINKS.registro(p.name)}
+                target="_blank"
+                rel="noreferrer"
               className={`sketch wobble mt-8 block py-3 text-center font-semibold ${p.featured ? "bg-primary text-primary-foreground" : "bg-background"}`}
             >
               {p.cta}

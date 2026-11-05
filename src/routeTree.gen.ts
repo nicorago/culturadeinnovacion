@@ -10,22 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AppRouteImport } from './routes/app'
 import { Route as BrujulaRouteImport } from './routes/brujula'
 import { Route as PlanesRouteImport } from './routes/planes'
 import { Route as PodcastRouteImport } from './routes/podcast'
-import { Route as RegistroRouteImport } from './routes/registro'
 import { Route as ServiciosRouteImport } from './routes/servicios'
-import { Route as AppIdeaRouteImport } from './routes/app_.idea'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppRoute = AppRouteImport.update({
-  id: '/app',
-  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BrujulaRoute = BrujulaRouteImport.update({
@@ -43,95 +35,48 @@ const PodcastRoute = PodcastRouteImport.update({
   path: '/podcast',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RegistroRoute = RegistroRouteImport.update({
-  id: '/registro',
-  path: '/registro',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ServiciosRoute = ServiciosRouteImport.update({
   id: '/servicios',
   path: '/servicios',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AppIdeaRoute = AppIdeaRouteImport.update({
-  id: '/app_/idea',
-  path: '/app/idea',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/app': typeof AppRoute
   '/brujula': typeof BrujulaRoute
   '/planes': typeof PlanesRoute
   '/podcast': typeof PodcastRoute
-  '/registro': typeof RegistroRoute
   '/servicios': typeof ServiciosRoute
-  '/app/idea': typeof AppIdeaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/app': typeof AppRoute
   '/brujula': typeof BrujulaRoute
   '/planes': typeof PlanesRoute
   '/podcast': typeof PodcastRoute
-  '/registro': typeof RegistroRoute
   '/servicios': typeof ServiciosRoute
-  '/app/idea': typeof AppIdeaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/app': typeof AppRoute
   '/brujula': typeof BrujulaRoute
   '/planes': typeof PlanesRoute
   '/podcast': typeof PodcastRoute
-  '/registro': typeof RegistroRoute
   '/servicios': typeof ServiciosRoute
-  '/app_/idea': typeof AppIdeaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/app'
-    | '/brujula'
-    | '/planes'
-    | '/podcast'
-    | '/registro'
-    | '/servicios'
-    | '/app/idea'
+  fullPaths: '/' | '/brujula' | '/planes' | '/podcast' | '/servicios'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/app'
-    | '/brujula'
-    | '/planes'
-    | '/podcast'
-    | '/registro'
-    | '/servicios'
-    | '/app/idea'
-  id:
-    | '__root__'
-    | '/'
-    | '/app'
-    | '/brujula'
-    | '/planes'
-    | '/podcast'
-    | '/registro'
-    | '/servicios'
-    | '/app_/idea'
+  to: '/' | '/brujula' | '/planes' | '/podcast' | '/servicios'
+  id: '__root__' | '/' | '/brujula' | '/planes' | '/podcast' | '/servicios'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AppRoute: typeof AppRoute
   BrujulaRoute: typeof BrujulaRoute
   PlanesRoute: typeof PlanesRoute
   PodcastRoute: typeof PodcastRoute
-  RegistroRoute: typeof RegistroRoute
   ServiciosRoute: typeof ServiciosRoute
-  AppIdeaRoute: typeof AppIdeaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,13 +86,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app': {
-      id: '/app'
-      path: '/app'
-      fullPath: '/app'
-      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/brujula': {
@@ -171,13 +109,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PodcastRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/registro': {
-      id: '/registro'
-      path: '/registro'
-      fullPath: '/registro'
-      preLoaderRoute: typeof RegistroRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/servicios': {
       id: '/servicios'
       path: '/servicios'
@@ -185,25 +116,15 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServiciosRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/app_/idea': {
-      id: '/app_/idea'
-      path: '/app/idea'
-      fullPath: '/app/idea'
-      preLoaderRoute: typeof AppIdeaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AppRoute: AppRoute,
   BrujulaRoute: BrujulaRoute,
   PlanesRoute: PlanesRoute,
   PodcastRoute: PodcastRoute,
-  RegistroRoute: RegistroRoute,
   ServiciosRoute: ServiciosRoute,
-  AppIdeaRoute: AppIdeaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

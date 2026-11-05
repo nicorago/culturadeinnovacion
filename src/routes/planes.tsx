@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Hand } from "@/components/site";
+import { createFileRoute } from "@tanstack/react-router";
+import { Hand, LINKS } from "@/components/site";
 
 export const Route = createFileRoute("/planes")({
   head: () => ({
@@ -49,13 +49,12 @@ function Planes() {
                 </li>
               ))}
             </ul>
-            <Link
-              to="/registro"
-              search={{ plan: p.name }}
+            <a
+                href={LINKS.registro(p.name)}
               className={`sketch wobble mt-8 block py-3 text-center font-semibold ${p.featured ? "bg-primary text-primary-foreground" : "bg-background"}`}
             >
               {p.cta}
-            </Link>
+            </a>
           </div>
         ))}
       </div>

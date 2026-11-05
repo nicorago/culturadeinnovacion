@@ -1,6 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import hero from "@/assets/hero-team.jpg";
-import { Hand } from "@/components/site";
+import { Hand, LINKS } from "@/components/site";
 
 export const Route = createFileRoute("/registro")({
   validateSearch: (s: Record<string, unknown>) => ({ plan: typeof s["plan"] === "string" ? (s["plan"] as string) : "Startup" }),
@@ -50,14 +50,14 @@ function Registro() {
           <Field label="tu correo" type="email" placeholder="nicolas@empresa.com" />
           <Field label="tu celular" type="tel" placeholder="+593 99 123 4567" />
         </div>
-        <Link
-          to="/app"
+        <a
+          href={LINKS.registro(plan)}
           className="sketch wobble mt-8 block w-full bg-primary py-3 text-center font-semibold text-primary-foreground"
         >
           Empezar a usar Brújula →
-        </Link>
+        </a>
         <p className="mt-4 text-center text-sm text-muted-foreground">
-          ¿Ya tienes cuenta? <span className="underline decoration-accent decoration-2">Entrar</span>
+          ¿Ya tienes cuenta? <a href={LINKS.login} className="underline decoration-accent decoration-2">Entrar</a>
         </p>
         <Hand className="mt-2 block text-center text-xl">sin tarjeta de crédito</Hand>
       </form>

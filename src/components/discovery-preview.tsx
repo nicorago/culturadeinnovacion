@@ -1,13 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Check,
-  Compass,
-  MessageCircle,
-  Pause,
-  Play,
-  Wand2,
-  Lightbulb,
-} from "lucide-react";
+import { Check, Compass, MessageCircle, Pause, Play, Wand2, Lightbulb } from "lucide-react";
 import { SketchAction } from "@/components/discovery-controls";
 import {
   ideaQuestions,

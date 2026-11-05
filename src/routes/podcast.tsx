@@ -6,9 +6,16 @@ export const Route = createFileRoute("/podcast")({
   head: () => ({
     meta: [
       { title: "Podcast Cultura de Innovación — con Nicolás Ramírez" },
-      { name: "description", content: "Conversaciones con referentes de producto e innovación, emprendedores y coaches de negocio. En Spotify, Apple Podcasts y YouTube." },
+      {
+        name: "description",
+        content:
+          "Conversaciones con referentes de producto e innovación, emprendedores y coaches de negocio. En Spotify, Apple Podcasts y YouTube.",
+      },
       { property: "og:title", content: "Podcast Cultura de Innovación — con Nicolás Ramírez" },
-      { property: "og:description", content: "Cómo se construyen productos que importan, contado por quienes lo hacen." },
+      {
+        property: "og:description",
+        content: "Cómo se construyen productos que importan, contado por quienes lo hacen.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -16,7 +23,14 @@ export const Route = createFileRoute("/podcast")({
   component: Podcast,
 });
 
-const topics = ["Product Discovery", "Cultura de experimentación", "Liderazgo de producto", "OKRs y outcomes", "Emprendimiento", "Innovación corporativa"];
+const topics = [
+  "Product Discovery",
+  "Cultura de experimentación",
+  "Liderazgo de producto",
+  "OKRs y outcomes",
+  "Emprendimiento",
+  "Innovación corporativa",
+];
 
 function Podcast() {
   return (
@@ -28,23 +42,37 @@ function Podcast() {
             Conversaciones que <span className="marker">mueven</span> la innovación.
           </h1>
           <p className="mt-6 text-lg text-muted-foreground">
-            Charlas con referentes del mundo de producto e innovación —autores como Christina Wodtke—,
-            emprendedores, líderes de empresa y coaches de negocio sobre lo que realmente funciona.
+            Charlas con referentes del mundo de producto e innovación —autores como Christina
+            Wodtke—, emprendedores, líderes de empresa y coaches de negocio sobre lo que realmente
+            funciona.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <SketchButton href={LINKS.spotify} variant="accent">Escuchar en Spotify</SketchButton>
-            <SketchButton href={LINKS.youtube} variant="ghost">Ver en YouTube</SketchButton>
+            <SketchButton href={LINKS.spotify} variant="accent">
+              Escuchar en Spotify
+            </SketchButton>
+            <SketchButton href={LINKS.youtube} variant="ghost">
+              Ver en YouTube
+            </SketchButton>
           </div>
           <p className="mt-4 text-sm text-muted-foreground">También en Apple Podcasts.</p>
         </div>
-        <img src={podcast} alt="Dos personas conversando en un podcast, dibujo a mano" width={1200} height={960} className="w-full mix-blend-multiply" />
+        <img
+          src={podcast}
+          alt="Dos personas conversando en un podcast, dibujo a mano"
+          width={1200}
+          height={960}
+          className="w-full mix-blend-multiply"
+        />
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-20">
         <h2 className="text-3xl font-bold">De qué hablamos</h2>
         <div className="mt-8 flex flex-wrap gap-4">
           {topics.map((t, i) => (
-            <span key={t} className={`sketch px-5 py-2 text-lg ${i % 3 === 0 ? "bg-highlight" : "bg-card"} ${i % 2 ? "rotate-1" : "-rotate-1"}`}>
+            <span
+              key={t}
+              className={`sketch px-5 py-2 text-lg ${i % 3 === 0 ? "bg-highlight" : "bg-card"} ${i % 2 ? "rotate-1" : "-rotate-1"}`}
+            >
               {t}
             </span>
           ))}
@@ -54,7 +82,9 @@ function Podcast() {
       <section className="mx-auto max-w-5xl px-6 pb-16">
         <Hand>⭐ episodio destacado</Hand>
         <h2 className="mt-1 text-3xl font-bold">Con Christina Wodtke</h2>
-        <p className="mt-2 text-muted-foreground">Autora de <em>Radical Focus</em> y referente mundial en OKRs y producto.</p>
+        <p className="mt-2 text-muted-foreground">
+          Autora de <em>Radical Focus</em> y referente mundial en OKRs y producto.
+        </p>
         <div className="sketch sketch-shadow mt-6 -rotate-1 overflow-hidden bg-highlight p-2">
           <iframe
             title="Episodio con Christina Wodtke"
@@ -69,7 +99,6 @@ function Podcast() {
       </section>
 
       <section className="mx-auto max-w-5xl px-6">
-
         <div className="sketch sketch-shadow overflow-hidden bg-card p-2">
           <iframe
             title="Podcast Cultura de Innovación en Spotify"
@@ -81,7 +110,9 @@ function Podcast() {
             className="rounded-xl border-0"
           />
         </div>
-        <p className="mt-8 text-center font-hand text-2xl">¿Quieres ser invitado o proponer a alguien? Escríbenos por nuestras redes.</p>
+        <p className="mt-8 text-center font-hand text-2xl">
+          ¿Quieres ser invitado o proponer a alguien? Escríbenos por nuestras redes.
+        </p>
       </section>
     </>
   );

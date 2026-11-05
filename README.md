@@ -19,13 +19,13 @@ bun run dev        # http://localhost:8080
 ```sh
 bun run test       # Vitest
 bun run lint       # ESLint + Prettier
-bun run build      # genera .output/ (Worker + archivos estáticos)
+bun run build      # genera .output/server (Worker) y dist/ (páginas y archivos estáticos)
 bun run preview    # sirve el build localmente
 ```
 
 ## Desplegar en Cloudflare Workers
 
-La configuración está en `wrangler.jsonc`. El build usa Nitro con el preset `cloudflare-module` y deja el Worker en `.output/server` y los assets en `.output/public`.
+La configuración está en `wrangler.jsonc`. El build usa Nitro con el preset `cloudflare-module` y deja el Worker en `.output/server` y los assets en `dist/`. Las cinco páginas públicas se prerenderizan en `dist/`, compatible también con publicación estática en Lovable, sin dependencias de Lovable.
 
 ```sh
 bunx wrangler login     # una sola vez

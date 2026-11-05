@@ -13,5 +13,5 @@
 - Store shared discovery example data independently of routes so the walkthrough stays decoupled from page code.
 - Render the public product walkthrough as accessible animated interface screens with pause and scene controls, rather than a generated video, to keep the demo faithful to the product and avoid video-generation cost.
 - No in-site product demo or sign-up routes: the site must not collect personal data.
-- Build with standard Vite + TanStack Start and deploy to Cloudflare Workers via nitro + wrangler; no Lovable packages, so the repo runs anywhere.
+- Build with standard Vite + TanStack Start and deploy to Cloudflare Workers via nitro + wrangler; prerender all public routes and emit public assets to dist/ (Worker stays in .output/server) for static-host compatibility without Lovable packages.
 - Plan CTAs and "Entrar" link to the real Brújula app (brujula.culturadeinnovacion.com/registro?plan=… and /login) and open in a new tab.

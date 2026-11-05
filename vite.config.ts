@@ -6,7 +6,7 @@ import tsConfigPaths from "vite-tsconfig-paths";
 import { nitro } from "nitro/vite";
 
 // Standard Vite + TanStack Start setup. Nitro builds a Cloudflare Workers bundle
-// (preset "cloudflare-module") into .output/, which wrangler.jsonc deploys.
+// (preset "cloudflare-module") into .output/server with publishable pages in dist/.
 export default defineConfig(({ command }) => ({
   server: { host: "::", port: 8080 },
   resolve: { dedupe: ["react", "react-dom", "@tanstack/react-router", "@tanstack/react-start"] },
@@ -15,7 +15,15 @@ export default defineConfig(({ command }) => ({
     tailwindcss(),
     // src/server.ts wraps TanStack Start's server entry with an SSR error page.
     tanstackStart({ server: { entry: "server" } }),
-    ...(command === "build" ? [nitro({ preset: "cloudflare-module" })] : []),
+    ...(command === "build"
+      ? [
+          nitro({
+            preset: "cloudflare-module",
+            output: { publicDir: "dist" },
+            prerender: { routes: ["/", "/brujula", "/planes", "/podcast", "/servicios"] },
+          }),
+        ]
+      : []),
     viteReact(),
   ],
 }));

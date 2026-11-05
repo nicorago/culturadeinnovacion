@@ -25,7 +25,7 @@ Este sitio **no pide ni guarda datos personales**: no hay registro propio ni dem
 | Datos | @tanstack/react-query v5 (no hay backend/base de datos todavía) |
 | Formularios | react-hook-form + zod |
 | Tests | Vitest + Testing Library + jsdom (`src/test/`) |
-| Runtime de producción | Cloudflare Workers (workerd), no Node. Nitro preset `cloudflare-module` → `.output/` |
+| Runtime de producción | Cloudflare Workers (workerd), no Node. Nitro preset `cloudflare-module` → `.output/server`; páginas públicas y assets → `dist/` |
 | Despliegue | wrangler (`wrangler.jsonc`) |
 | Lenguaje | TypeScript, alias `@/` → `src/` |
 
@@ -115,7 +115,7 @@ Simple, minimalista, cálido y algo divertido, con dibujos hechos a mano.
 
 ## 5. Despliegue y Git
 
-- Despliegue: `bun run deploy` (o `bun run build && bunx wrangler deploy`). Nitro genera `.output/server/wrangler.json`; `wrangler.jsonc` en la raíz define nombre, flags y assets.
+- Despliegue: `bun run deploy` (o `bun run build && bunx wrangler deploy`). Nitro genera `.output/server/wrangler.json`; `wrangler.jsonc` en la raíz define nombre, flags y assets en `dist/`. Las cinco rutas públicas se prerenderizan en `dist/` para permitir también publicación estática en Lovable, sin paquetes propios de Lovable.
 - Dominio: configurar `culturadeinnovacion.com` como Custom Domain del Worker en el panel de Cloudflare.
 - Si la sincronización con Lovable sigue activa: no hacer `git push --force` ni reescribir commits publicados.
 - No editar `src/routeTree.gen.ts` a mano.

@@ -78,8 +78,6 @@
 @utility sketch {
   border: 2px solid var(--color-foreground);
   border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-  /* Evita que el fondo se asome por fuera del borde al rotar (efecto wobble). */
-  background-clip: padding-box;
 }
 @utility sketch-shadow {
   box-shadow: 5px 5px 0 0 var(--color-foreground);
@@ -96,11 +94,21 @@
 @utility font-hand {
   font-family: var(--font-hand);
 }
+/* Al pasar el mouse la caja "se levanta" en diagonal. Sin rotación a propósito: rotar una caja
+   con bordes curvos hace que el navegador dibuje líneas y halos en los bordes (sobre todo Firefox). */
 @utility wobble {
-  transition: transform 0.25s ease;
-  &:hover {
-    transform: rotate(-1.5deg) translateY(-2px);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  &:hover,
+  &:focus-visible {
+    transform: translate(-2px, -2px);
   }
+}
+/* Si además tiene sombra, la sombra crece para que se note que la caja se levantó. */
+.sketch-shadow.wobble:hover,
+.sketch-shadow.wobble:focus-visible {
+  box-shadow: 7px 7px 0 0 var(--color-foreground);
 }
 
 .discovery-progress {

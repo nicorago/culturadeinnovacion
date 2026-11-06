@@ -78,6 +78,8 @@
 @utility sketch {
   border: 2px solid var(--color-foreground);
   border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  /* Evita que el fondo se asome por fuera del borde al rotar (efecto wobble). */
+  background-clip: padding-box;
 }
 @utility sketch-shadow {
   box-shadow: 5px 5px 0 0 var(--color-foreground);

@@ -94,21 +94,26 @@
 @utility font-hand {
   font-family: var(--font-hand);
 }
-/* Al pasar el mouse la caja "se levanta" en diagonal. Sin rotación a propósito: rotar una caja
-   con bordes curvos hace que el navegador dibuje líneas y halos en los bordes (sobre todo Firefox). */
+/* Al pasar el mouse la caja se inclina y se levanta (el giro original de Lovable).
+   Para que el giro no deje líneas ni halos en los bordes curvos:
+   - will-change + backface-visibility: el navegador dibuja fondo, borde y sombra juntos en una
+     sola capa (sin girar) y después gira esa capa entera, en vez de dibujar cada parte girada;
+   - outline transparente de 1 px: le da al navegador un margen para suavizar el borde exterior
+     girado (evita bordes dentados, sobre todo en Firefox). */
 @utility wobble {
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.25s ease;
+  will-change: transform;
+  backface-visibility: hidden;
+  outline: 1px solid transparent;
   &:hover,
   &:focus-visible {
-    transform: translate(-2px, -2px);
+    transform: rotate(-1.5deg) translateY(-2px);
   }
-}
-/* Si además tiene sombra, la sombra crece para que se note que la caja se levantó. */
-.sketch-shadow.wobble:hover,
-.sketch-shadow.wobble:focus-visible {
-  box-shadow: 7px 7px 0 0 var(--color-foreground);
+  /* El outline transparente taparía el foco del teclado: se lo devolvemos. */
+  &:focus-visible {
+    outline: 2px solid var(--color-foreground);
+    outline-offset: 4px;
+  }
 }
 
 .discovery-progress {

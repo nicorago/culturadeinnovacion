@@ -1,11 +1,20 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
+/** Los enlaces externos (http) se abren en una pestaña nueva; mailto y rutas internas, no. */
+export const externalProps = (href: string) =>
+  href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {};
+
 export const LINKS = {
   brujula: "https://brujula.culturadeinnovacion.com/",
   login: "https://brujula.culturadeinnovacion.com/login",
-  registro: (plan: string) =>
-    `https://brujula.culturadeinnovacion.com/registro?plan=${plan.toLowerCase()}`,
+  // El registro gratis de Brújula todavía no está activo: el plan Startup lleva a la home
+  // de Brújula y los planes "consúltanos" abren un correo a hola@. Cuando Brújula active
+  // su registro, se vuelve a `/registro?plan=...`.
+  plan: (plan: string) =>
+    plan.toLowerCase() === "startup"
+      ? "https://brujula.culturadeinnovacion.com/"
+      : `mailto:hola@culturadeinnovacion.com?subject=${encodeURIComponent(`Plan ${plan} de Brújula`)}`,
   planes: "/planes",
   spotify: "https://open.spotify.com/show/6097vhyGcbi3YMUUQUANE1?si=7102920dd3ad4597",
   youtube: "https://www.youtube.com/@culturadeinnovacion",
@@ -28,7 +37,7 @@ export function SketchButton({
   return (
     <a
       href={href}
-      {...(href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
+      {...externalProps(href)}
       className={`sketch sketch-shadow wobble inline-flex items-center gap-2 px-6 py-3 font-semibold ${styles}`}
     >
       {children}

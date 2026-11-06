@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import path from "@/assets/discovery-path.jpg";
-import { Hand, LINKS, SketchButton } from "@/components/site";
+import { Hand, LINKS, SketchButton, externalProps } from "@/components/site";
 import { DiscoveryPreview } from "@/components/discovery-preview";
 
 export const Route = createFileRoute("/brujula")({
@@ -159,9 +159,8 @@ function Brujula() {
                 ))}
               </ul>
               <a
-                href={LINKS.registro(p.name)}
-                target="_blank"
-                rel="noreferrer"
+                href={LINKS.plan(p.name)}
+                {...externalProps(LINKS.plan(p.name))}
                 className={`sketch wobble mt-8 block py-3 text-center font-semibold ${p.featured ? "bg-primary text-primary-foreground" : "bg-background"}`}
               >
                 {p.cta}

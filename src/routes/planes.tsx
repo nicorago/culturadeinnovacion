@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Hand, LINKS } from "@/components/site";
+import { Hand, LINKS, externalProps } from "@/components/site";
 
 export const Route = createFileRoute("/planes")({
   head: () => ({
@@ -96,9 +96,8 @@ function Planes() {
               ))}
             </ul>
             <a
-              href={LINKS.registro(p.name)}
-              target="_blank"
-              rel="noreferrer"
+              href={LINKS.plan(p.name)}
+              {...externalProps(LINKS.plan(p.name))}
               className={`sketch wobble mt-8 block py-3 text-center font-semibold ${p.featured ? "bg-primary text-primary-foreground" : "bg-background"}`}
             >
               {p.cta}

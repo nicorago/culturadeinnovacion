@@ -1,0 +1,126 @@
+# Pipeline de la web (ver docs/estandares/entrega-continua.md):
+#   PR   → revisiones (lint · test · build) → preview con su propia URL
+#   main → revisiones → deploy a producción → smoke test
+# Se construye UNA vez en "revisiones" y se publica ese mismo build (Continuous Delivery).
+# El repo es público: los minutos de Actions son gratis y no tocan la bolsa de la app Brújula.
+
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  # En PRs se cancela la corrida anterior; en main nunca se corta un deploy a la mitad.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  BUN_VERSION: 1.4.2
+
+jobs:
+  revisiones:
+    name: Revisiones (lint · test · build)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+      - run: bun install --frozen-lockfile
+      - run: bun run lint
+      - run: bun run test
+      - run: bun run build
+      - name: Guardar el build para publicarlo tal cual
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          include-hidden-files: true
+          retention-days: 7
+          path: |
+            .output/
+            dist/
+            .wrangler/deploy/
+
+  preview:
+    name: Preview del PR
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    needs: revisiones
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+      - run: bun install --frozen-lockfile
+      - uses: actions/download-artifact@v4
+        with:
+          name: build
+      - name: Subir versión de preview (no toca producción)
+        if: env.CLOUDFLARE_API_TOKEN != ''
+        run: |
+          bunx wrangler versions upload \
+            --preview-alias "pr-${{ github.event.pull_request.number }}" \
+            --message "PR #${{ github.event.pull_request.number }}"
+          echo "Preview: https://pr-${{ github.event.pull_request.number }}-culturadeinnovacion.hola-83e.workers.dev" >> "$GITHUB_STEP_SUMMARY"
+      - name: Sin token de Cloudflare
+        if: env.CLOUDFLARE_API_TOKEN == ''
+        run: echo "Falta el secret CLOUDFLARE_API_TOKEN; se omite el preview." >> "$GITHUB_STEP_SUMMARY"
+
+  produccion:
+    name: Deploy a producción
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: revisiones
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: produccion
+      url: https://culturadeinnovacion.com
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+      - run: bun install --frozen-lockfile
+      - uses: actions/download-artifact@v4
+        with:
+          name: build
+      - name: Falta el token
+        if: env.CLOUDFLARE_API_TOKEN == ''
+        run: |
+          echo "::error::Falta el secret CLOUDFLARE_API_TOKEN: no se puede publicar."
+          exit 1
+      - name: Publicar
+        run: bunx wrangler deploy --message "main ${{ github.sha }}"
+      - name: Smoke test (la web y la app Brújula responden)
+        run: |
+          sleep 10
+          fallo=0
+          for url in \
+            https://culturadeinnovacion.com/ \
+            https://culturadeinnovacion.com/brujula \
+            https://culturadeinnovacion.com/planes \
+            https://culturadeinnovacion.com/podcast \
+            https://culturadeinnovacion.com/servicios \
+            https://www.culturadeinnovacion.com/ \
+            https://brujula.culturadeinnovacion.com/login; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --retry 3 --retry-delay 5 "$url")
+            echo "$code $url" | tee -a "$GITHUB_STEP_SUMMARY"
+            [ "$code" = "200" ] || fallo=1
+          done
+          if [ "$fallo" = "1" ]; then
+            echo "::error::Alguna URL no respondió 200. Rollback: bunx wrangler rollback (ver docs/runbook.md)."
+            exit 1
+          fi

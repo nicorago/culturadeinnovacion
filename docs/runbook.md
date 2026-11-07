@@ -11,7 +11,18 @@
 
 ## Deploy
 
-Hoy, mientras no exista la CI, se hace manual y **solo desde `main` actualizado**:
+**Automático (lo normal):** GitHub Actions (`.github/workflows/ci.yml`).
+
+| Evento | Qué corre |
+|---|---|
+| PR | Revisiones (lint · test · build) → **preview** en `https://pr-<N>-culturadeinnovacion.hola-83e.workers.dev` (no toca producción) |
+| Merge a `main` | Revisiones → **deploy a producción** con el mismo build → smoke test (5 páginas, www y login de la app Brújula) |
+
+Secrets del repo (los carga Nico en GitHub → Settings → Secrets and variables → Actions):
+- `CLOUDFLARE_API_TOKEN`: token `github-ci-culturadeinnovacion` (plantilla "Edit Cloudflare Workers"), limitado a la cuenta y la zona `culturadeinnovacion.com`. **Sin permisos de DNS. Vence el 6-nov-2027:** renovarlo antes (Cloudflare → My Profile → API Tokens → Roll) y actualizar el secret.
+- `CLOUDFLARE_ACCOUNT_ID`: ID de la cuenta de Cloudflare.
+
+**Manual (plan B, si la CI no está disponible)**, solo desde `main` actualizado:
 
 ```bash
 git switch main && git pull --ff-only
@@ -71,6 +82,5 @@ nslookup -type=MX culturadeinnovacion.com hugh.ns.cloudflare.com
 ## Pendiente
 
 - [ ] Cancelar el hosting de Namecheap (~20-nov-2026, si todo sigue estable). Antes: revisar que no tenga archivos ni casillas en uso.
-- [ ] CI con deploy automático desde `main` (token de Cloudflare solo con permiso de Workers, en GitHub Secrets).
 - [ ] Prerender de páginas.
 - [ ] Redirección `www` → raíz (o canonical) para SEO.

@@ -4,6 +4,7 @@ Una línea por cambio publicado. Lo más nuevo arriba. No se editan entradas his
 
 ## 2026-11-06
 
+- **ci:** GitHub Actions: lint, test y build en cada PR; preview por PR; deploy automático desde `main` con el mismo build y smoke test.
 - **docs:** `CLAUDE.md` propio (aislamiento, flujo, carriles, Jira, contenido), estándares de web, UX y entrega continua, ADRs 0001–0002, runbook, lecciones. Se eliminan `AGENTS.md`, `roadmap.md` y `.lovable/` (restos de Lovable).
 - **feat(dominio):** la web nueva está en `culturadeinnovacion.com` y `www` (Cloudflare Workers, Custom Domains sin comodín). DNS movido a Cloudflare sin cortar la app Brújula ni el correo. (#5)
 - **fix(estilos):** vuelve el giro de los botones sketch, dibujado en una sola capa para no dejar costuras. (#4)

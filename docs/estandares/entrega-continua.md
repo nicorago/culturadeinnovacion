@@ -58,8 +58,9 @@ Principios de Continuous Delivery que aplica:
 
 ## 4. Lo que todavía no tenemos (y su orden)
 
-1. CI en GitHub Actions: lint, test y build en cada PR; deploy desde `main`.
-2. Preview por PR (versión del Worker con su propia URL).
-3. Prerender de páginas, para no gastar CPU del plan gratis.
-4. Smoke test automático después del deploy.
-5. Analítica liviana sin cookies (Cloudflare Web Analytics) y alerta si la web cae.
+Ya está (desde 2026-11-06): CI en cada PR, preview por PR, deploy automático desde `main` con el mismo build y smoke test (`.github/workflows/ci.yml`).
+
+Falta:
+1. Prerender de páginas, para no gastar CPU del plan gratis.
+2. Analítica liviana sin cookies (Cloudflare Web Analytics) y alerta si la web cae.
+3. Proteger `main` en GitHub (exigir PR y checks en verde).

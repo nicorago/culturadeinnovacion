@@ -8,5 +8,14 @@
     "directory": "dist",
     "binding": "ASSETS"
   },
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+  // Dirección de prueba (*.workers.dev), útil para revisar antes de publicar.
+  "workers_dev": true,
+  // SOLO estos dos nombres exactos. Nunca un comodín (*culturadeinnovacion.com/* o
+  // *.culturadeinnovacion.com/*): capturaría brujula.culturadeinnovacion.com, que es la app
+  // Brújula en Vercel, y la dejaría sin responder.
+  "routes": [
+    { "pattern": "culturadeinnovacion.com", "custom_domain": true },
+    { "pattern": "www.culturadeinnovacion.com", "custom_domain": true }
+  ]
 }

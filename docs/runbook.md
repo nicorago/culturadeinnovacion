@@ -22,6 +22,21 @@ Secrets del repo (los carga Nico en GitHub → Settings → Secrets and variable
 - `CLOUDFLARE_API_TOKEN`: token `github-ci-culturadeinnovacion` (plantilla "Edit Cloudflare Workers"), limitado a la cuenta y la zona `culturadeinnovacion.com`. **Sin permisos de DNS. Vence el 6-nov-2027:** renovarlo antes (Cloudflare → My Profile → API Tokens → Roll) y actualizar el secret.
 - `CLOUDFLARE_ACCOUNT_ID`: ID de la cuenta de Cloudflare.
 
+### Protección de main (GitHub → Settings → Branches)
+
+Desde 2026-11-07, `main` solo cambia por PR:
+
+| Regla | Para qué |
+|---|---|
+| PR obligatorio (0 aprobaciones: Nico no puede aprobar sus propios PRs; su OK va en el chat) | Nadie publica sin pasar por un PR |
+| Check obligatorio **"Revisiones (lint · test · build)"**, con la rama al día | No se mezcla nada que no compile o falle las pruebas |
+| Aplica también a administradores | Ni Nico ni Claude se la saltan por error |
+| Historial lineal, sin force push ni borrado de `main` | El historial no se reescribe |
+| Conversaciones del PR resueltas | No quedan comentarios pendientes |
+| Repo: solo squash merge y borrar la rama al hacer merge | Un commit por PR en `main` |
+
+Emergencia (la CI caída y la web rota): primero `bunx wrangler rollback`, que no necesita GitHub. Desactivar la protección solo con OK de Nico, y volver a activarla enseguida.
+
 **Manual (plan B, si la CI no está disponible)**, solo desde `main` actualizado:
 
 ```bash

@@ -2,6 +2,10 @@
 
 Una línea por cambio publicado. Lo más nuevo arriba. No se editan entradas históricas.
 
+## 2026-11-07
+
+- **chore(github):** `main` protegida: solo por PR con "Revisiones" en verde, también para administradores; solo squash merge y la rama se borra al mezclar.
+
 ## 2026-11-06
 
 - **ci:** GitHub Actions: lint, test y build en cada PR; preview por PR; deploy automático desde `main` con el mismo build y smoke test.

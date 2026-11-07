@@ -30,4 +30,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-.wrangler
+
+
+# Archivos temporales del proyecto (nunca /tmp: es compartido)
+.tmp/

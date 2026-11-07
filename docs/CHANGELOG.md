@@ -1,0 +1,18 @@
+# Changelog
+
+Una línea por cambio publicado. Lo más nuevo arriba. No se editan entradas históricas.
+
+## 2026-11-06
+
+- **docs:** `CLAUDE.md` propio (aislamiento, flujo, carriles, Jira, contenido), estándares de web, UX y entrega continua, ADRs 0001–0002, runbook, lecciones. Se eliminan `AGENTS.md`, `roadmap.md` y `.lovable/` (restos de Lovable).
+- **feat(dominio):** la web nueva está en `culturadeinnovacion.com` y `www` (Cloudflare Workers, Custom Domains sin comodín). DNS movido a Cloudflare sin cortar la app Brújula ni el correo. (#5)
+- **fix(estilos):** vuelve el giro de los botones sketch, dibujado en una sola capa para no dejar costuras. (#4)
+- **fix(estilos):** botones sketch sin rotación (reemplazado por #4). (#3)
+- **feat(marca):** favicon de brújula (el mismo de la app Brújula) en vez del de Lovable. (#2)
+- **fix(planes):** "Empezar gratis" lleva a la app Brújula; Plus y Empresarial abren un correo a hola@. `.gitattributes` con LF (el lint pasa de ~6.150 errores falsos a 0). (#1)
+- **infra:** primer deploy del Worker en `culturadeinnovacion.hola-83e.workers.dev`.
+
+## 2026-11-05
+
+- **repo:** el código de Lovable se sube a `nicorago/culturadeinnovacion` y se hace público. Lovable queda desconectado.
+- **correo:** `hola@culturadeinnovacion.com` pasa de un forward del hosting a Zoho Mail (MX, SPF, DKIM).

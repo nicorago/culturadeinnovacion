@@ -19,7 +19,7 @@
 | Merge a `main` | Revisiones → **deploy a producción** con el mismo build → smoke test (5 páginas, www y login de la app Brújula) |
 
 Secrets del repo (los carga Nico en GitHub → Settings → Secrets and variables → Actions):
-- `CLOUDFLARE_API_TOKEN`: token con plantilla "Edit Cloudflare Workers", limitado a la cuenta y la zona `culturadeinnovacion.com`. **Sin permisos de DNS.**
+- `CLOUDFLARE_API_TOKEN`: token `github-ci-culturadeinnovacion` (plantilla "Edit Cloudflare Workers"), limitado a la cuenta y la zona `culturadeinnovacion.com`. **Sin permisos de DNS. Vence el 6-nov-2027:** renovarlo antes (Cloudflare → My Profile → API Tokens → Roll) y actualizar el secret.
 - `CLOUDFLARE_ACCOUNT_ID`: ID de la cuenta de Cloudflare.
 
 **Manual (plan B, si la CI no está disponible)**, solo desde `main` actualizado:

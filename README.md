@@ -1,37 +1,36 @@
-# Cultura de Innovación
+# Cultura de Innovación · la web
 
-Sitio web de Cultura de Innovación: Brújula, el podcast y los servicios. Construido con **TanStack Start v1** (React 19 + Vite) y **Tailwind CSS v4**, desplegado en **Cloudflare Workers**. Guía detallada para agentes/desarrolladores: `CDILOVABLECLAUDE.md`.
+Sitio de [culturadeinnovacion.com](https://culturadeinnovacion.com): la app Brújula, el podcast y los servicios de consultoría. Construido con **TanStack Start v1** (React 19 + Vite) y **Tailwind CSS v4**, publicado en **Cloudflare Workers**.
+
+- Guía para agentes y desarrolladores: [`CLAUDE.md`](CLAUDE.md)
+- Deploy, DNS y rollback: [`docs/runbook.md`](docs/runbook.md)
+- Estándares: [`docs/estandares/`](docs/estandares/) · Decisiones: [`docs/decisiones/`](docs/decisiones/)
 
 ## Requisitos
 
-- [Bun](https://bun.sh) 1.x (o Node.js 22+ con npm)
-- Cuenta de Cloudflare (solo para desplegar)
+- [Bun](https://bun.sh) 1.x
+- Cuenta de Cloudflare (solo para publicar)
 
-## Instalar y correr en local
+## Correr en local
 
 ```sh
 bun install
 bun run dev        # http://localhost:8080
 ```
 
-## Tests, lint y build
+## Revisar antes de un PR
 
 ```sh
-bun run test       # Vitest
-bun run lint       # ESLint + Prettier
-bun run build      # genera .output/server (Worker) y dist/ (páginas y archivos estáticos)
-bun run preview    # sirve el build localmente
+bun run lint
+bun run test
+bun run build      # genera .output/server (Worker) y dist/ (archivos estáticos)
 ```
 
-## Desplegar en Cloudflare Workers
+## Publicar
 
-La configuración está en `wrangler.jsonc`. El build usa Nitro con el preset `cloudflare-module` y deja el Worker en `.output/server` y los assets en `dist/`. Las cinco páginas públicas se prerenderizan en `dist/`, compatible también con publicación estática en Lovable, sin dependencias de Lovable.
+Ver [`docs/runbook.md`](docs/runbook.md). En resumen, desde `main` actualizado:
 
 ```sh
-bunx wrangler login     # una sola vez
+bunx wrangler login     # una sola vez, con la cuenta de Cloudflare del sitio
 bun run deploy          # = vite build && wrangler deploy
 ```
-
-Para usar el dominio propio, en el panel de Cloudflare abre el Worker `culturadeinnovacion` → Settings → Domains & Routes → Add Custom Domain (`culturadeinnovacion.com`). El dominio debe estar gestionado en Cloudflare.
-
-Para desplegar automáticamente desde GitHub, conecta el repositorio en Cloudflare (Workers → Create → Import a repository) con build command `bun run build` y deploy command `bunx wrangler deploy`.

@@ -2,6 +2,10 @@
 
 Una línea por cambio publicado. Lo más nuevo arriba. No se editan entradas históricas.
 
+## 2026-11-09
+
+- **feat(marca):** logo "Ci" dibujado a mano en el header (PNG transparente sobre el crema). Favicon con el mismo logo y la C y la i acentuadas (reemplaza la brújula de #2). En celular el header muestra solo el logo para no chocar con el menú. Originales en `docs/marca/`.
+
 ## 2026-11-07
 
 - **chore(github):** `main` protegida: solo por PR con "Revisiones" en verde, también para administradores; solo squash merge y la rama se borra al mezclar.

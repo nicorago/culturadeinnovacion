@@ -50,15 +50,15 @@ export function Header() {
   return (
     <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
       <Link to="/" className="flex items-center gap-2">
-        <span className="sketch grid h-10 w-10 place-items-center bg-highlight font-hand text-2xl">
-          ci
-        </span>
-        <span className="font-display text-lg font-bold leading-none">
+        {/* Logo dibujado a mano, PNG transparente (fuente en alta calidad: docs/marca/logo-ci.png). */}
+        <img src="/logo-ci.png" alt="" width={171} height={160} className="h-11 w-auto sm:h-13" />
+        {/* En celular solo el logo (el nombre no cabe junto al menú); el nombre sigue para lectores de pantalla. */}
+        <span className="sr-only font-display text-lg font-bold leading-none sm:not-sr-only">
           Cultura de <br />
           Innovación
         </span>
       </Link>
-      <nav className="flex items-center gap-6 text-sm">
+      <nav className="flex items-center gap-5 text-sm sm:gap-6">
         <Link to="/brujula" className={nav} activeProps={{ className: "underline" }}>
           Brújula
         </Link>

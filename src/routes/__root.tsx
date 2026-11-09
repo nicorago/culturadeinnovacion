@@ -78,9 +78,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      // Brújula de Brújula: SVG para navegadores modernos, .ico de respaldo y PNG para iPhone.
-      { rel: "icon", href: "/icon.svg", type: "image/svg+xml", sizes: "any" },
-      { rel: "icon", href: "/favicon.ico", sizes: "32x32" },
+      // Logo "Ci" con la C y la i acentuadas (fuente en docs/marca/): .ico 16/32/48, PNG 192 y PNG para iPhone.
+      { rel: "icon", href: "/favicon.ico", sizes: "16x16 32x32 48x48" },
+      { rel: "icon", href: "/icon.png", type: "image/png", sizes: "192x192" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },

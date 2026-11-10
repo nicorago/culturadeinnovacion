@@ -121,10 +121,10 @@ Verificar localmente antes de cada push (no gastar CI en errores evitables). Res
 ## 5. Jira
 
 - Sitio: **culturadeinnovacion.atlassian.net**, proyecto **KAN**. **Nunca** crear, editar ni mover nada en `brujula-innovacion.atlassian.net` (BRU, BPD): es de la app Brújula.
-- Hoy el conector de Atlassian **no tiene acceso** a este sitio (pide aprobación de un admin). Hasta resolverlo: Nico crea o importa las tarjetas y Claude propone el contenido.
-- Columnas: `Backlog (draft)` · `To Do this week` · `In Progress` · `In review` · `Done` · `Won't do`.
+- **Acceso (desde 2026-11-10):** solo con `bash .claude/scripts/jira.sh GET|POST|PUT /rest/api/3/...` (local, no está en el repo). Usa un token de la cuenta hola@ guardado en el Administrador de credenciales de Windows (`git:https://culturadeinnovacion.atlassian.net`); esa cuenta solo ve KAN. No borra (sin DELETE) y nunca imprime el token. **No usar el conector de Atlassian** para este sitio: es el mismo que usa el chat de la app Brújula.
+- Estados reales de KAN: `Tareas por hacer` · `En curso` · `En revisión` · `Finalizada`. Lo de esta semana lleva la etiqueta `esta-semana`.
 - Antes de una tarea, lee el issue. Si no hay issue, propónlo y créalo solo con OK de Nico.
-- Claude puede mover a In Progress e In review. **Nunca a Done:** eso lo hace Nico cuando lo ve en producción.
+- Claude puede mover a En curso y En revisión, y comentar el PR en la tarjeta. **Nunca a Finalizada:** eso lo hace Nico cuando lo ve en producción.
 - Si Jira contradice el código o este archivo, no elijas en silencio: avisa.
 - Trabajo centrado en **quien visita la web** (Teresa Torres): épicas = oportunidades o momentos del visitante; issues = user stories o job stories con criterios de aceptación verificables desde el visitante. Lo técnico va como *enabler* enlazado a la historia que habilita. Sin puntuar oportunidades: se comparan entre sí.
 - Para escribir issues, usar como referencia los skills `pm-execution:user-stories`, `pm-execution:job-stories` y `pm-execution:outcome-roadmap`.

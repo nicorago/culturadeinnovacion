@@ -34,3 +34,6 @@ dist-ssr
 
 # Archivos temporales del proyecto (nunca /tmp: es compartido)
 .tmp/
+
+# Configuración local de Claude Code (permisos, scripts y servidor de desarrollo de esta PC)
+.claude/

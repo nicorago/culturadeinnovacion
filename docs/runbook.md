@@ -8,6 +8,7 @@
 | Cloudflare | `hola@culturadeinnovacion.com` · plan Free | Worker `culturadeinnovacion`, zona `culturadeinnovacion.com`. Requiere 2FA |
 | Registro del dominio | Namecheap | Solo nameservers. El hosting de Namecheap queda sin uso (cancelar tras ~2 semanas estables) |
 | Correo | Zoho Mail (Forever Free) · `hola@culturadeinnovacion.com` | Solo web y app móvil (sin IMAP) |
+| Jira | `hola@` · culturadeinnovacion.atlassian.net, proyecto KAN | Token de API con permisos `claude-code-culturadeinnovacion` (read/write jira-work, read jira-user) en el Administrador de credenciales de Windows como `git:https://culturadeinnovacion.atlassian.net`. **Vence ~10-nov-2027:** crear uno nuevo y reemplazar la credencial |
 
 ## Deploy
 

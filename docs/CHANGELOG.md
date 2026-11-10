@@ -2,6 +2,10 @@
 
 Una línea por cambio publicado. Lo más nuevo arriba. No se editan entradas históricas.
 
+## 2026-11-10
+
+- **docs(jira):** acceso de Claude a Jira KAN con token propio de hola@ (sin el conector compartido con la app Brújula). Plan SEO cargado como 5 épicas y 24 tarjetas (KAN-1 a KAN-29). `.claude/` fuera de git.
+
 ## 2026-11-09
 
 - **fix(marca):** favicon e íconos con fondo blanco (sin fondo no se veían bien en pestañas oscuras). Banners de LinkedIn en `docs/marca/`.

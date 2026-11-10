@@ -4,6 +4,7 @@ Una línea por cambio publicado. Lo más nuevo arriba. No se editan entradas his
 
 ## 2026-11-09
 
+- **fix(marca):** favicon e íconos con fondo blanco (sin fondo no se veían bien en pestañas oscuras). Banners de LinkedIn en `docs/marca/`.
 - **feat(marca):** logo "Ci" dibujado a mano en el header (PNG transparente sobre el crema). Favicon con el mismo logo y la C y la i acentuadas (reemplaza la brújula de #2). En celular el header muestra solo el logo para no chocar con el menú. Originales en `docs/marca/`.
 
 ## 2026-11-07

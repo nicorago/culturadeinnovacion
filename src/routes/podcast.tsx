@@ -1,10 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import podcast from "@/assets/podcast-sketch.jpg";
 import { Hand, LINKS, SketchButton } from "@/components/site";
+import { canonicalLink, pageUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/podcast")({
   head: () => ({
+    links: [canonicalLink("/podcast")],
     meta: [
+      { property: "og:url", content: pageUrl("/podcast") },
       { title: "Podcast Cultura de Innovación — con Nicolás Ramírez" },
       {
         name: "description",

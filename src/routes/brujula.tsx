@@ -1,11 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import path from "@/assets/discovery-path.jpg";
 import { Hand, LINKS, SketchButton, externalProps } from "@/components/site";
+import { canonicalLink, pageUrl } from "@/lib/seo";
 import { DiscoveryPreview } from "@/components/discovery-preview";
 
 export const Route = createFileRoute("/brujula")({
   head: () => ({
+    links: [canonicalLink("/brujula")],
     meta: [
+      { property: "og:url", content: pageUrl("/brujula") },
       { title: "Brújula — Product Discovery basado en evidencia" },
       {
         name: "description",

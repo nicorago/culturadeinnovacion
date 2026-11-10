@@ -2,6 +2,10 @@
 
 Una línea por cambio publicado. Lo más nuevo arriba. No se editan entradas históricas.
 
+## 2026-11-10
+
+- **feat(seo):** `sitemap.xml`, línea Sitemap en `robots.txt`, canonical y `og:url` en las 5 páginas, apuntando a la raíz sin www.
+
 ## 2026-11-09
 
 - **fix(marca):** favicon e íconos con fondo blanco (sin fondo no se veían bien en pestañas oscuras). Banners de LinkedIn en `docs/marca/`.

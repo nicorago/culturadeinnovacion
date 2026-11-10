@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hand, LINKS, externalProps } from "@/components/site";
+import { canonicalLink, pageUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/planes")({
   head: () => ({
+    links: [canonicalLink("/planes")],
     meta: [
+      { property: "og:url", content: pageUrl("/planes") },
       { title: "Planes de Brújula — Empieza gratis" },
       {
         name: "description",

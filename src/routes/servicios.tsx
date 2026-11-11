@@ -1,13 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import hero from "@/assets/hero-team.jpg";
 import { Hand, SketchButton } from "@/components/site";
-import { canonicalLink, pageUrl } from "@/lib/seo";
+import { canonicalLink, pageUrl, shareImageMeta, serviciosLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/servicios")({
   head: () => ({
     links: [canonicalLink("/servicios")],
+    scripts: [serviciosLd],
     meta: [
       { property: "og:url", content: pageUrl("/servicios") },
+      ...shareImageMeta(
+        "servicios",
+        "Servicios de Cultura de Innovación: consultoría y Human Momentum. Equipo dibujado en una pizarra y dos personas conversando.",
+      ),
       { title: "Servicios — Consultoría de Discovery y Human Momentum" },
       {
         name: "description",

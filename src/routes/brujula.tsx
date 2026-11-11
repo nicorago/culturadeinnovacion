@@ -1,14 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import path from "@/assets/discovery-path.jpg";
 import { Hand, LINKS, SketchButton, externalProps } from "@/components/site";
-import { canonicalLink, pageUrl } from "@/lib/seo";
+import { canonicalLink, pageUrl, shareImageMeta, brujulaLd } from "@/lib/seo";
 import { DiscoveryPreview } from "@/components/discovery-preview";
 
 export const Route = createFileRoute("/brujula")({
   head: () => ({
     links: [canonicalLink("/brujula")],
+    scripts: [brujulaLd],
     meta: [
       { property: "og:url", content: pageUrl("/brujula") },
+      ...shareImageMeta(
+        "brujula",
+        "Brújula de Innovación: deja de adivinar qué construir. Camino dibujado desde una pregunta hasta una bandera de logro.",
+      ),
       { title: "Brújula — Product Discovery basado en evidencia" },
       {
         name: "description",

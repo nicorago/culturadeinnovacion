@@ -3,13 +3,17 @@ import hero from "@/assets/hero-team.jpg";
 import path from "@/assets/discovery-path.jpg";
 import podcast from "@/assets/podcast-sketch.jpg";
 import { Hand, LINKS, SketchButton } from "@/components/site";
-import { canonicalLink, pageUrl } from "@/lib/seo";
+import { canonicalLink, pageUrl, shareImageMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     links: [canonicalLink("/")],
     meta: [
       { property: "og:url", content: pageUrl("/") },
+      ...shareImageMeta(
+        "inicio",
+        "Cultura de Innovación: innova con evidencia, no con corazonadas. Equipo dibujado alrededor de una pizarra con una brújula.",
+      ),
       { title: "Cultura de Innovación — Innovación basada en evidencia" },
       {
         name: "description",

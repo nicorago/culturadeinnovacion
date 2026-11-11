@@ -4,6 +4,7 @@ Una línea por cambio publicado. Lo más nuevo arriba. No se editan entradas his
 
 ## 2026-11-10
 
+- **feat(seo):** imagen propia al compartir cada página en LinkedIn, WhatsApp y X (1200×630, estilo sketchy) (KAN-9) y datos estructurados de schema.org: organización, Nicolás Ramírez, sitio, Brújula de Innovación, servicios con área Ecuador y Latinoamérica, y podcast (KAN-10). Banners de perfil de LinkedIn en `docs/marca/`.
 - **feat(seo):** las direcciones del sitio anterior (WordPress) llevan a su página nueva con 301; `/habitacion-compartida` responde 410. Páginas 404, 410 y de error con el estilo sketchy: brújula dibujada a mano que gira desorientada (respeta movimiento reducido). (KAN-30)
 - **docs(jira):** acceso de Claude a Jira KAN con token propio de hola@ (sin el conector compartido con la app Brújula). Plan SEO cargado como 5 épicas y 24 tarjetas (KAN-1 a KAN-29). `.claude/` fuera de git.
 - **feat(seo):** `sitemap.xml`, línea Sitemap en `robots.txt`, canonical y `og:url` en las 5 páginas, apuntando a la raíz sin www.

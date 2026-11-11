@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { Header, Footer } from "@/components/site";
 import { LostPage } from "@/components/lost-page";
 import { isLegacyGone } from "@/lib/redirects";
+import { organizationLd } from "@/lib/seo";
 
 function NotFoundComponent() {
   const { pathname } = useLocation();
@@ -74,6 +75,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Cultura de Innovación" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    // Quiénes somos para Google (schema.org, KAN-10).
+    scripts: [organizationLd],
     links: [
       { rel: "stylesheet", href: appCss },
       // Logo "Ci" con la C y la i acentuadas (fuente en docs/marca/): .ico 16/32/48, PNG 192 y PNG para iPhone.

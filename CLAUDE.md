@@ -145,7 +145,7 @@ Verificar localmente antes de cada push (no gastar CI en errores evitables). Res
   - Pendiente de decisión de Nico: usar `https://brujula.culturadeinnovacion.com/planes` (formulario de interés). Cuando la app Brújula abra su registro gratis, Nico avisa y se actualizan los enlaces.
 - **Contacto:** `hola@culturadeinnovacion.com` (Zoho Mail).
 - **Human Momentum** (programa de 7 semanas): Pausar, Humanizar, Observar, Empatizar, Escuchar, Comunicar, Motivarse. Fases: Auto-conexión (sem. 1–2), Inter-conexión (sem. 3–5), Sostener los hábitos (sem. 6–7). 15 min diarios, 1 h semanal, workshop de 4 h. Certificado de participación, certificado de horas en CNV y libro digital.
-- **Podcast** conducido por Nicolás Ramírez. Spotify: https://open.spotify.com/show/6097vhyGcbi3YMUUQUANE1 · YouTube: https://www.youtube.com/@culturadeinnovacion · Episodio destacado (Christina Wodtke): https://open.spotify.com/episode/7mZjqPUe2lz5lvY3FNpPtj
+- **Podcast** conducido por Nicolás Ramírez. Spotify: https://open.spotify.com/show/6097vhyGcbi3YMUUQUANE1 · YouTube: https://www.youtube.com/@culturadeinnovacion · Apple Podcasts: https://podcasts.apple.com/cl/podcast/cultura-de-innovaci%C3%B3n/id1775589584 · Episodio destacado (Christina Wodtke): https://open.spotify.com/episode/7mZjqPUe2lz5lvY3FNpPtj (en Apple: https://podcasts.apple.com/cl/podcast/t2-e1-sin-seguridad-psicol%C3%B3gica-no-hay-innovaci%C3%B3n-christina/id1775589584?i=1000779950657)
 - **Ejemplo del walkthrough:** inventado y autorizado (parqueo en centros comerciales, persona "Valeria"). Son hipótesis, no evidencia.
 
 ---

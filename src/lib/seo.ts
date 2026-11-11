@@ -29,6 +29,7 @@ const ORG_ID = `${SITE_URL}/#organizacion`;
 const PERSON_ID = `${SITE_URL}/#nicolas-ramirez`;
 const SPOTIFY = "https://open.spotify.com/show/6097vhyGcbi3YMUUQUANE1";
 const YOUTUBE = "https://www.youtube.com/@culturadeinnovacion";
+const APPLE = "https://podcasts.apple.com/cl/podcast/cultura-de-innovaci%C3%B3n/id1775589584";
 const LINKEDIN = "https://www.linkedin.com/company/cultura-de-innovacion";
 const AREA = [
   { "@type": "Country", name: "Ecuador" },
@@ -47,7 +48,7 @@ export const organizationLd = jsonLd({
       email: "hola@culturadeinnovacion.com",
       founder: { "@id": PERSON_ID },
       areaServed: AREA,
-      sameAs: [LINKEDIN, SPOTIFY, YOUTUBE],
+      sameAs: [LINKEDIN, SPOTIFY, APPLE, YOUTUBE],
     },
     {
       "@type": "Person",
@@ -108,5 +109,5 @@ export const podcastLd = jsonLd({
   inLanguage: "es",
   author: { "@id": PERSON_ID },
   publisher: { "@id": ORG_ID },
-  sameAs: [SPOTIFY, YOUTUBE],
+  sameAs: [SPOTIFY, APPLE, YOUTUBE],
 });

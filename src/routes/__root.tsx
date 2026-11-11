@@ -1,8 +1,8 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
-  Link,
   createRootRouteWithContext,
+  useLocation,
   useRouter,
   HeadContent,
   Scripts,
@@ -12,25 +12,27 @@ import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { Header, Footer } from "@/components/site";
+import { LostPage } from "@/components/lost-page";
+import { isLegacyGone } from "@/lib/redirects";
 
 function NotFoundComponent() {
+  const { pathname } = useLocation();
+  // Direcciones del sitio anterior sin equivalente: el servidor responde 410 con esta misma página.
+  if (isLegacyGone(pathname)) {
+    return (
+      <LostPage
+        code="410"
+        title="Esta página ya no existe"
+        note="Era parte del sitio anterior. Nos mudamos, y ella no vino con nosotros."
+      />
+    );
+  }
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <p className="mt-2 font-hand text-2xl text-muted-foreground">
-          Esta página se perdió en el mapa.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="sketch inline-block bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
-          >
-            Volver al inicio
-          </Link>
-        </div>
-      </div>
-    </div>
+    <LostPage
+      code="404"
+      title="Esta página se perdió en el mapa"
+      note="Hasta las mejores brújulas se marean a veces."
+    />
   );
 }
 
@@ -39,25 +41,21 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   const router = useRouter();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold text-foreground">Esta página no cargó</h1>
-        <div className="mt-6 flex justify-center gap-2">
-          <button
-            onClick={() => {
-              router.invalidate();
-              reset();
-            }}
-            className="sketch bg-primary px-4 py-2 text-sm text-primary-foreground"
-          >
-            Reintentar
-          </button>
-          <a href="/" className="sketch px-4 py-2 text-sm">
-            Inicio
-          </a>
-        </div>
-      </div>
-    </div>
+    <LostPage
+      code="¡Ups!"
+      title="Esta página no cargó"
+      note="Se nos rompió la punta del lápiz. Ya la estamos afilando."
+    >
+      <button
+        onClick={() => {
+          router.invalidate();
+          reset();
+        }}
+        className="sketch sketch-shadow wobble mt-8 bg-accent px-6 py-3 font-semibold text-accent-foreground"
+      >
+        Intentar de nuevo
+      </button>
+    </LostPage>
   );
 }
 

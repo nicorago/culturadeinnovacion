@@ -108,7 +108,7 @@ function Servicios() {
       </section>
 
       {/* Human Momentum */}
-      <section className="mx-auto mt-24 max-w-6xl px-6">
+      <section id="human-momentum" className="mx-auto mt-24 max-w-6xl scroll-mt-8 px-6">
         <div className="sketch sketch-shadow bg-card p-8 md:p-12">
           <span className="sketch inline-block bg-accent px-3 py-1 font-hand text-xl text-accent-foreground">
             02 · programa

@@ -167,6 +167,30 @@
     height: 670px;
   }
 }
+/* Páginas 404 / 410 / error: la aguja de la brújula gira desorientada. */
+@keyframes compass-lost {
+  0%,
+  100% {
+    transform: rotate(-35deg);
+  }
+  20% {
+    transform: rotate(60deg);
+  }
+  45% {
+    transform: rotate(-120deg);
+  }
+  60% {
+    transform: rotate(-95deg);
+  }
+  80% {
+    transform: rotate(200deg);
+  }
+}
+.compass-needle {
+  transform-box: view-box;
+  transform-origin: 60px 60px;
+  animation: compass-lost 6s ease-in-out infinite;
+}
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

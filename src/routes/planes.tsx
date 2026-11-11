@@ -11,17 +11,17 @@ export const Route = createFileRoute("/planes")({
         "planes",
         "Planes de Brújula de Innovación. Celular dibujado con una brújula en la pantalla.",
       ),
-      { title: "Planes de Brújula — Empieza gratis" },
+      { title: "Planes de Brújula de Innovación" },
       {
         name: "description",
         content:
-          "Elige tu plan de Brújula: Startup gratis, Plus o Empresarial a medida para equipos de innovación.",
+          "Elige tu plan de Brújula de Innovación: Startup gratis, Plus o Empresarial a medida para equipos de innovación. Escríbenos y te contamos más.",
       },
-      { property: "og:title", content: "Planes de Brújula — Empieza gratis" },
+      { property: "og:title", content: "Planes de Brújula de Innovación" },
       {
         property: "og:description",
         content:
-          "Product Discovery basado en evidencia. Empieza gratis y cambia de plan cuando lo necesites.",
+          "Elige tu plan de Brújula de Innovación: Startup gratis, Plus o Empresarial a medida para equipos de innovación. Escríbenos y te contamos más.",
       },
       { property: "og:type", content: "product" },
       { name: "twitter:card", content: "summary_large_image" },

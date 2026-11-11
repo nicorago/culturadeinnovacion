@@ -18,6 +18,9 @@ export const LINKS = {
   planes: "/planes",
   spotify: "https://open.spotify.com/show/6097vhyGcbi3YMUUQUANE1?si=7102920dd3ad4597",
   youtube: "https://www.youtube.com/@culturadeinnovacion",
+  apple: "https://podcasts.apple.com/cl/podcast/cultura-de-innovaci%C3%B3n/id1775589584",
+  appleWodtke:
+    "https://podcasts.apple.com/cl/podcast/t2-e1-sin-seguridad-psicol%C3%B3gica-no-hay-innovaci%C3%B3n-christina/id1775589584?i=1000779950657",
 };
 
 export function SketchButton({
@@ -93,6 +96,9 @@ export function Footer() {
           </a>
           <a href={LINKS.youtube} target="_blank" rel="noreferrer" className="hover:underline">
             YouTube
+          </a>
+          <a href={LINKS.apple} target="_blank" rel="noreferrer" className="hover:underline">
+            Apple Podcasts
           </a>
           <span className="text-muted-foreground">
             © {new Date().getFullYear()} Cultura de Innovación

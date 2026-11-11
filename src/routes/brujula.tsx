@@ -14,17 +14,17 @@ export const Route = createFileRoute("/brujula")({
         "brujula",
         "Brújula de Innovación: deja de adivinar qué construir. Camino dibujado desde una pregunta hasta una bandera de logro.",
       ),
-      { title: "Brújula — Product Discovery basado en evidencia" },
+      { title: "Brújula de Innovación: valida ideas con clientes" },
       {
         name: "description",
         content:
-          "De la oportunidad a la decisión: customer persona, journey map, árbol de oportunidades, experimentos y entrevistas en una sola plataforma.",
+          "App para validar tu idea con clientes reales antes de construirla: guía de entrevistas, oportunidades y decisiones con evidencia.",
       },
-      { property: "og:title", content: "Brújula — Product Discovery basado en evidencia" },
+      { property: "og:title", content: "Brújula de Innovación: valida ideas con clientes" },
       {
         property: "og:description",
         content:
-          "La plataforma de Cultura de Innovación para decidir en qué invertir con evidencia de tus clientes.",
+          "App para validar tu idea con clientes reales antes de construirla: guía de entrevistas, oportunidades y decisiones con evidencia.",
       },
       { property: "og:type", content: "product" },
       { name: "twitter:card", content: "summary_large_image" },

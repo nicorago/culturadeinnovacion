@@ -13,16 +13,17 @@ export const Route = createFileRoute("/podcast")({
         "podcast",
         "Podcast Cultura de Innovación con Nicolás Ramírez. Dos personas dibujadas conversando frente a micrófonos.",
       ),
-      { title: "Podcast Cultura de Innovación — con Nicolás Ramírez" },
+      { title: "Podcast Cultura de Innovación: innovación y producto" },
       {
         name: "description",
         content:
-          "Conversaciones con referentes de producto e innovación, emprendedores y coaches de negocio. En Spotify, Apple Podcasts y YouTube.",
+          "Conversaciones con referentes de producto e innovación, emprendedores y coaches, conducidas por Nicolás Ramírez. En Spotify, Apple Podcasts y YouTube.",
       },
-      { property: "og:title", content: "Podcast Cultura de Innovación — con Nicolás Ramírez" },
+      { property: "og:title", content: "Podcast Cultura de Innovación: innovación y producto" },
       {
         property: "og:description",
-        content: "Cómo se construyen productos que importan, contado por quienes lo hacen.",
+        content:
+          "Conversaciones con referentes de producto e innovación, emprendedores y coaches, conducidas por Nicolás Ramírez. En Spotify, Apple Podcasts y YouTube.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -46,7 +47,7 @@ function Podcast() {
       <section className="mx-auto grid max-w-6xl items-center gap-10 px-6 pt-8 md:grid-cols-2">
         <div>
           <Hand>🎙️ con Nicolás Ramírez</Hand>
-          <h1 className="mt-2 text-5xl font-extrabold leading-tight md:text-6xl">
+          <h1 className="mt-2 text-4xl font-extrabold leading-tight sm:text-5xl md:text-6xl">
             Conversaciones que <span className="marker">mueven</span> la innovación.
           </h1>
           <p className="mt-6 text-lg text-muted-foreground">
@@ -61,8 +62,10 @@ function Podcast() {
             <SketchButton href={LINKS.youtube} variant="ghost">
               Ver en YouTube
             </SketchButton>
+            <SketchButton href={LINKS.apple} variant="ghost">
+              Apple Podcasts
+            </SketchButton>
           </div>
-          <p className="mt-4 text-sm text-muted-foreground">También en Apple Podcasts.</p>
         </div>
         <img
           src={podcast}
@@ -104,6 +107,13 @@ function Podcast() {
             className="rounded-xl border-0"
           />
         </div>
+        <p className="mt-4 text-sm">
+          También en{" "}
+          <a href={LINKS.appleWodtke} target="_blank" rel="noreferrer" className="underline">
+            Apple Podcasts
+          </a>
+          .
+        </p>
       </section>
 
       <section className="mx-auto max-w-5xl px-6">

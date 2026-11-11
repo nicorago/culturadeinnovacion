@@ -14,17 +14,17 @@ export const Route = createFileRoute("/")({
         "inicio",
         "Cultura de Innovación: innova con evidencia, no con corazonadas. Equipo dibujado alrededor de una pizarra con una brújula.",
       ),
-      { title: "Cultura de Innovación — Innovación basada en evidencia" },
+      { title: "Consultoría de innovación · Cultura de Innovación" },
       {
         name: "description",
         content:
-          "Ayudamos a líderes de innovación y producto a decidir en qué invertir con evidencia real de sus clientes. Conoce Brújula y el podcast.",
+          "Consultoría de innovación y product discovery para empresas en Ecuador y Latam. Valida ideas con clientes reales usando Brújula de Innovación.",
       },
-      { property: "og:title", content: "Cultura de Innovación — Innovación basada en evidencia" },
+      { property: "og:title", content: "Consultoría de innovación · Cultura de Innovación" },
       {
         property: "og:description",
         content:
-          "Brújula, la plataforma de Product Discovery, y el podcast Cultura de Innovación con Nicolás Ramírez.",
+          "Consultoría de innovación y product discovery para empresas en Ecuador y Latam. Valida ideas con clientes reales usando Brújula de Innovación.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -47,6 +47,9 @@ function Index() {
         <div>
           <Hand>para líderes de innovación y producto</Hand>
           <h1 className="mt-2 text-5xl font-extrabold leading-[1.05] md:text-6xl">
+            <span className="mb-3 block font-sans text-lg font-semibold leading-snug text-muted-foreground md:text-xl">
+              Consultoría de innovación en Ecuador y Latam
+            </span>
             Innova con <span className="marker">evidencia</span>, no con corazonadas.
           </h1>
           <p className="mt-6 max-w-lg text-lg text-muted-foreground">

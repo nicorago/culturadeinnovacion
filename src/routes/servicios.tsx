@@ -13,19 +13,23 @@ export const Route = createFileRoute("/servicios")({
         "servicios",
         "Servicios de Cultura de Innovación: consultoría y Human Momentum. Equipo dibujado en una pizarra y dos personas conversando.",
       ),
-      { title: "Servicios — Consultoría de Discovery y Human Momentum" },
+      { title: "Consultoría de innovación para empresas · Ecuador y Latam" },
       {
         name: "description",
         content:
-          "Consultoría de Innovación y Discovery para líderes y equipos, y Human Momentum: 7 semanas para entrenar inteligencia emocional y comunicación empática.",
+          "Consultoría de innovación y discovery para líderes y equipos, y Human Momentum: 7 semanas para entrenar inteligencia emocional y comunicación empática.",
       },
-      { property: "og:title", content: "Servicios — Cultura de Innovación" },
+      {
+        property: "og:title",
+        content: "Consultoría de innovación para empresas · Ecuador y Latam",
+      },
       {
         property: "og:description",
-        content: "Te acompañamos a innovar con tus clientes y a crecer como personas y equipos.",
+        content:
+          "Consultoría de innovación y discovery para líderes y equipos, y Human Momentum: 7 semanas para entrenar inteligencia emocional y comunicación empática.",
       },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Servicios,
@@ -67,7 +71,10 @@ function Servicios() {
       <section className="mx-auto max-w-4xl px-6 pt-8 text-center">
         <Hand>servicios ✏️</Hand>
         <h1 className="mt-2 text-5xl font-extrabold leading-tight md:text-6xl">
-          Te <span className="marker">acompañamos</span> en el camino.
+          <span className="mb-3 block font-sans text-lg font-semibold leading-snug text-muted-foreground md:text-xl">
+            Consultoría de innovación para empresas
+          </span>
+          Te <span className="marker">acompañamos</span> en el camino hacia la innovación.
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
           Además de herramientas, trabajamos codo a codo con líderes, equipos y emprendedores: para

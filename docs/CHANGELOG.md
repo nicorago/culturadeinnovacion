@@ -2,6 +2,10 @@
 
 Una línea por cambio publicado. Lo más nuevo arriba. No se editan entradas históricas.
 
+## 2026-11-11
+
+- **feat(seo):** títulos y descripciones nuevos en las 5 páginas (Ecuador y Latam; descripciones de 100+ caracteres para LinkedIn); línea con palabra clave en el H1 de inicio y servicios; enlaces a Apple Podcasts en podcast, footer y datos estructurados; el título de /podcast ya no se sale de la pantalla en celular. (KAN-11)
+
 ## 2026-11-10
 
 - **feat(seo):** imagen propia al compartir cada página en LinkedIn, WhatsApp y X (1200×630, estilo sketchy) (KAN-9) y datos estructurados de schema.org: organización, Nicolás Ramírez, sitio, Brújula de Innovación, servicios con área Ecuador y Latinoamérica, y podcast (KAN-10). Banners de perfil de LinkedIn en `docs/marca/`.

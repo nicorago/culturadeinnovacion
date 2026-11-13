@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isLegacyGone, legacyRedirect, markLegacyGone } from "@/lib/redirects";
+import { isLegacyGone, legacyRedirect, markLegacyGone, wwwRedirect } from "@/lib/redirects";
 import { renderErrorPage } from "@/lib/error-page";
 
 const BASE = "https://culturadeinnovacion.com";
@@ -50,5 +50,23 @@ describe("direcciones del sitio anterior (KAN-30)", () => {
     expect(html).toContain('lang="es"');
     expect(html).toContain("Esta página no cargó");
     expect(html).toContain("Caveat");
+  });
+});
+
+describe("www a la raíz (KAN-8)", () => {
+  it("www responde 301 a la misma ruta en la raíz, con parámetros", () => {
+    const res = wwwRedirect("https://www.culturadeinnovacion.com/podcast?utm_source=x");
+    expect(res?.status).toBe(301);
+    expect(res?.headers.get("location")).toBe(
+      "https://culturadeinnovacion.com/podcast?utm_source=x",
+    );
+  });
+  it.each([
+    "https://culturadeinnovacion.com/",
+    "https://culturadeinnovacion.hola-83e.workers.dev/",
+    "https://pr-9-culturadeinnovacion.hola-83e.workers.dev/servicios",
+    "https://brujula.culturadeinnovacion.com/login",
+  ])("%s no se toca", (u) => {
+    expect(wwwRedirect(u)).toBeNull();
   });
 });

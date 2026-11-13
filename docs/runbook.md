@@ -17,7 +17,7 @@
 | Evento | Qué corre |
 |---|---|
 | PR | Revisiones (lint · test · build) → **preview** en `https://pr-<N>-culturadeinnovacion.hola-83e.workers.dev` (no toca producción) |
-| Merge a `main` | Revisiones → **deploy a producción** con el mismo build → smoke test (5 páginas, www y login de la app Brújula) |
+| Merge a `main` | Revisiones → **deploy a producción** con el mismo build → smoke test (5 páginas, www → 301 a la raíz y login de la app Brújula) |
 
 Secrets del repo (los carga Nico en GitHub → Settings → Secrets and variables → Actions):
 - `CLOUDFLARE_API_TOKEN`: token `github-ci-culturadeinnovacion` (plantilla "Edit Cloudflare Workers"), limitado a la cuenta y la zona `culturadeinnovacion.com`. **Sin permisos de DNS. Vence el 6-nov-2027:** renovarlo antes (Cloudflare → My Profile → API Tokens → Roll) y actualizar el secret.
@@ -52,11 +52,11 @@ Publica en `culturadeinnovacion.com`, `www.culturadeinnovacion.com` y `culturade
 
 ```bash
 for p in / /brujula /planes /podcast /servicios; do curl -s -o /dev/null -w "$p %{http_code}\n" https://culturadeinnovacion.com$p; done
-curl -s -o /dev/null -w "www %{http_code}\n" https://www.culturadeinnovacion.com/
+curl -s -o /dev/null -w "www %{http_code} %{redirect_url}\n" https://www.culturadeinnovacion.com/   # debe ser 301 a https://culturadeinnovacion.com/
 curl -s -o /dev/null -w "app Brújula login %{http_code}\n" https://brujula.culturadeinnovacion.com/login
 ```
 
-Todo debe dar `200`. Si tu PC muestra la web vieja después de un cambio de DNS, es caché local: `ipconfig /flushdns`, o probar con el celular usando datos móviles.
+Todo debe dar `200`, salvo `www`, que debe dar `301` a la raíz. Si tu PC muestra la web vieja después de un cambio de DNS, es caché local: `ipconfig /flushdns`, o probar con el celular usando datos móviles.
 
 ## DNS (Cloudflare → culturadeinnovacion.com → DNS → Records)
 
@@ -99,4 +99,4 @@ nslookup -type=MX culturadeinnovacion.com hugh.ns.cloudflare.com
 
 - [ ] Cancelar el hosting de Namecheap (~20-nov-2026, si todo sigue estable). Antes: revisar que no tenga archivos ni casillas en uso.
 - [ ] Prerender de páginas.
-- [ ] Redirección `www` → raíz (o canonical) para SEO.
+- [x] Redirección `www` → raíz con 301, en el código del Worker (KAN-8, 2026-11-13).

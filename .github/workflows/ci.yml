@@ -114,12 +114,15 @@ jobs:
             https://culturadeinnovacion.com/planes \
             https://culturadeinnovacion.com/podcast \
             https://culturadeinnovacion.com/servicios \
-            https://www.culturadeinnovacion.com/ \
             https://brujula.culturadeinnovacion.com/login; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --retry 3 --retry-delay 5 "$url")
             echo "$code $url" | tee -a "$GITHUB_STEP_SUMMARY"
             [ "$code" = "200" ] || fallo=1
           done
+          # www debe responder 301 a la misma ruta en la raíz (KAN-8)
+          www=$(curl -s -o /dev/null -w "%{http_code} %{redirect_url}" --retry 3 --retry-delay 5 https://www.culturadeinnovacion.com/podcast)
+          echo "$www (www)" | tee -a "$GITHUB_STEP_SUMMARY"
+          [ "$www" = "301 https://culturadeinnovacion.com/podcast" ] || fallo=1
           if [ "$fallo" = "1" ]; then
             echo "::error::Alguna URL no respondió 200. Rollback: bunx wrangler rollback (ver docs/runbook.md)."
             exit 1

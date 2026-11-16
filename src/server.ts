@@ -2,7 +2,7 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
-import { legacyRedirect, markLegacyGone } from "./lib/redirects";
+import { legacyRedirect, markLegacyGone, wwwRedirect } from "./lib/redirects";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -47,6 +47,10 @@ function isH3SwallowedErrorBody(body: string): boolean {
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
+    // Una sola dirección para Google: www responde 301 a la raíz (KAN-8).
+    const www = wwwRedirect(request.url);
+    if (www) return www;
+
     // Direcciones del sitio anterior (WordPress) con equivalente: 301 a la página nueva (KAN-30).
     const redirect = legacyRedirect(request.url);
     if (redirect) return redirect;

@@ -40,3 +40,13 @@ export function markLegacyGone(requestUrl: string, response: Response): Response
   if (response.status !== 404 || !isLegacyGone(new URL(requestUrl).pathname)) return response;
   return new Response(response.body, { status: 410, headers: response.headers });
 }
+
+/** www.culturadeinnovacion.com → la raíz, con la misma ruta y parámetros (KAN-8). */
+export function wwwRedirect(requestUrl: string): Response | null {
+  const url = new URL(requestUrl);
+  if (url.hostname !== "www.culturadeinnovacion.com") return null;
+  return new Response(null, {
+    status: 301,
+    headers: { location: `https://culturadeinnovacion.com${url.pathname}${url.search}` },
+  });
+}

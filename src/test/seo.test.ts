@@ -63,3 +63,14 @@ describe("datos estructurados (KAN-10)", () => {
     expect(parse(brujulaLd).name).toBe("Brújula de Innovación");
   });
 });
+
+describe("IndexNow (KAN-36)", () => {
+  it("la clave está publicada en public/ y la CI la usa", () => {
+    expect(readFileSync("public/56b1c5543f2634356ca86e23841bacad.txt", "utf8")).toBe(
+      "56b1c5543f2634356ca86e23841bacad",
+    );
+    expect(readFileSync(".github/workflows/ci.yml", "utf8")).toContain(
+      "KEY=56b1c5543f2634356ca86e23841bacad",
+    );
+  });
+});

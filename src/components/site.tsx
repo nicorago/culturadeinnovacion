@@ -54,7 +54,13 @@ export function Header() {
     <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
       <Link to="/" className="flex items-center gap-2">
         {/* Logo dibujado a mano, PNG transparente (fuente en alta calidad: docs/marca/logo-ci.png). */}
-        <img src="/logo-ci.png" alt="" width={171} height={160} className="h-11 w-auto sm:h-13" />
+        <img
+          src="/logo-ci.png"
+          alt="Logo Ci"
+          width={171}
+          height={160}
+          className="h-11 w-auto sm:h-13"
+        />
         {/* En celular solo el logo (el nombre no cabe junto al menú); el nombre sigue para lectores de pantalla. */}
         <span className="sr-only font-display text-lg font-bold leading-none sm:not-sr-only">
           Cultura de <br />

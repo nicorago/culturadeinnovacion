@@ -127,3 +127,13 @@ jobs:
             echo "::error::Alguna URL no respondió 200. Rollback: bunx wrangler rollback (ver docs/runbook.md)."
             exit 1
           fi
+      - name: Avisar a Bing y otros buscadores (IndexNow)
+        # Envía las URLs del sitemap para que Bing (y ChatGPT, que busca con Bing) vea los cambios pronto.
+        # La clave es pública por diseño (public/<clave>.txt). Si IndexNow falla, el deploy no se rompe (KAN-36).
+        continue-on-error: true
+        run: |
+          KEY=56b1c5543f2634356ca86e23841bacad
+          URLS=$(curl -s https://culturadeinnovacion.com/sitemap.xml | grep -o '<loc>[^<]*</loc>' | sed -e 's#<loc>##' -e 's#</loc>##' | jq -R . | jq -s -c .)
+          BODY=$(jq -n -c --arg key "$KEY" --argjson urls "$URLS" '{host: "culturadeinnovacion.com", key: $key, keyLocation: ("https://culturadeinnovacion.com/" + $key + ".txt"), urlList: $urls}')
+          code=$(curl -s -o /dev/null -w "%{http_code}" -X POST https://api.indexnow.org/indexnow -H "Content-Type: application/json; charset=utf-8" -d "$BODY")
+          echo "IndexNow: $code ($(echo "$URLS" | jq length) URLs)" | tee -a "$GITHUB_STEP_SUMMARY"

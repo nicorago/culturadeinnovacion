@@ -19,6 +19,8 @@
 | PR | Revisiones (lint · test · build) → **preview** en `https://pr-<N>-culturadeinnovacion.hola-83e.workers.dev` (no toca producción) |
 | Merge a `main` | Revisiones → **deploy a producción** con el mismo build → smoke test (5 páginas, www → 301 a la raíz y login de la app Brújula) |
 
+**IndexNow (KAN-36):** al final de cada deploy, la CI envía las URLs del sitemap a `api.indexnow.org` con la clave pública de `public/<clave>.txt`. Si falla, no rompe el deploy. Para ver si Bing las recibió: Bing Webmaster Tools → IndexNow.
+
 Secrets del repo (los carga Nico en GitHub → Settings → Secrets and variables → Actions):
 - `CLOUDFLARE_API_TOKEN`: token `github-ci-culturadeinnovacion` (plantilla "Edit Cloudflare Workers"), limitado a la cuenta y la zona `culturadeinnovacion.com`. **Sin permisos de DNS. Vence el 6-nov-2027:** renovarlo antes (Cloudflare → My Profile → API Tokens → Roll) y actualizar el secret.
 - `CLOUDFLARE_ACCOUNT_ID`: ID de la cuenta de Cloudflare.

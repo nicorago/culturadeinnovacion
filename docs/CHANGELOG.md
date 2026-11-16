@@ -2,6 +2,10 @@
 
 Una línea por cambio publicado. Lo más nuevo arriba. No se editan entradas históricas.
 
+## 2026-11-16
+
+- **feat(seo):** IndexNow: después de cada deploy, la CI avisa a Bing (y a otros buscadores) las URLs del sitemap; el logo del header tiene texto alternativo. (KAN-36)
+
 ## 2026-11-13
 
 - **feat(seo):** `www.culturadeinnovacion.com` responde 301 a la misma página en la raíz; el smoke test lo verifica en cada deploy. Sin cambios de DNS. (KAN-8)

@@ -2,6 +2,10 @@
 
 Una línea por cambio publicado. Lo más nuevo arriba. No se editan entradas históricas.
 
+## 2026-11-18
+
+- **feat(seo):** página `/consultoria-de-innovacion` con los 3 formatos (modelo de producto e innovación, formación en Product Discovery, Design Sprint), el caso de PPM, Quito + remoto en Latam y datos estructurados; enlazada desde /servicios y en el sitemap. (KAN-33)
+
 ## 2026-11-16
 
 - **feat(seo):** IndexNow: después de cada deploy, la CI avisa a Bing (y a otros buscadores) las URLs del sitemap; el logo del header tiene texto alternativo. (KAN-36)

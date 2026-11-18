@@ -10,7 +10,7 @@ import {
   shareImageMeta,
 } from "@/lib/seo";
 
-const PAGES = ["/", "/brujula", "/servicios", "/podcast", "/planes"];
+const PAGES = ["/", "/brujula", "/servicios", "/consultoria-de-innovacion", "/podcast", "/planes"];
 
 describe("SEO", () => {
   it("la URL canónica es la raíz sin www", () => {

@@ -111,3 +111,21 @@ export const podcastLd = jsonLd({
   publisher: { "@id": ORG_ID },
   sameAs: [SPOTIFY, APPLE, YOUTUBE],
 });
+
+export const consultoriaLd = jsonLd({
+  "@type": "Service",
+  name: "Consultoría de innovación para empresas",
+  serviceType: "Consultoría de innovación",
+  provider: { "@id": ORG_ID },
+  areaServed: AREA,
+  url: pageUrl("/consultoria-de-innovacion"),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Formatos de consultoría",
+    itemListElement: [
+      "Modelo de producto e innovación",
+      "Formación y coaching en Product Discovery",
+      "Workshop de innovación con Design Sprint",
+    ].map((name) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name } })),
+  },
+});

@@ -104,9 +104,12 @@ function Servicios() {
               </div>
             ))}
           </div>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap gap-4">
             <SketchButton href="mailto:hola@culturadeinnovacion.com?subject=Consultoría de Discovery">
               Conversemos →
+            </SketchButton>
+            <SketchButton href="/consultoria-de-innovacion" variant="ghost">
+              Ver formatos y caso de éxito
             </SketchButton>
           </div>
         </div>

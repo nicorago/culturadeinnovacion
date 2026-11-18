@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BrujulaRouteImport } from './routes/brujula'
+import { Route as ConsultoriaDeInnovacionRouteImport } from './routes/consultoria-de-innovacion'
 import { Route as PlanesRouteImport } from './routes/planes'
 import { Route as PodcastRouteImport } from './routes/podcast'
 import { Route as ServiciosRouteImport } from './routes/servicios'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const BrujulaRoute = BrujulaRouteImport.update({
   id: '/brujula',
   path: '/brujula',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsultoriaDeInnovacionRoute = ConsultoriaDeInnovacionRouteImport.update({
+  id: '/consultoria-de-innovacion',
+  path: '/consultoria-de-innovacion',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PlanesRoute = PlanesRouteImport.update({
@@ -44,6 +50,7 @@ const ServiciosRoute = ServiciosRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/brujula': typeof BrujulaRoute
+  '/consultoria-de-innovacion': typeof ConsultoriaDeInnovacionRoute
   '/planes': typeof PlanesRoute
   '/podcast': typeof PodcastRoute
   '/servicios': typeof ServiciosRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/brujula': typeof BrujulaRoute
+  '/consultoria-de-innovacion': typeof ConsultoriaDeInnovacionRoute
   '/planes': typeof PlanesRoute
   '/podcast': typeof PodcastRoute
   '/servicios': typeof ServiciosRoute
@@ -59,21 +67,42 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/brujula': typeof BrujulaRoute
+  '/consultoria-de-innovacion': typeof ConsultoriaDeInnovacionRoute
   '/planes': typeof PlanesRoute
   '/podcast': typeof PodcastRoute
   '/servicios': typeof ServiciosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/brujula' | '/planes' | '/podcast' | '/servicios'
+  fullPaths:
+    | '/'
+    | '/brujula'
+    | '/consultoria-de-innovacion'
+    | '/planes'
+    | '/podcast'
+    | '/servicios'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/brujula' | '/planes' | '/podcast' | '/servicios'
-  id: '__root__' | '/' | '/brujula' | '/planes' | '/podcast' | '/servicios'
+  to:
+    | '/'
+    | '/brujula'
+    | '/consultoria-de-innovacion'
+    | '/planes'
+    | '/podcast'
+    | '/servicios'
+  id:
+    | '__root__'
+    | '/'
+    | '/brujula'
+    | '/consultoria-de-innovacion'
+    | '/planes'
+    | '/podcast'
+    | '/servicios'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BrujulaRoute: typeof BrujulaRoute
+  ConsultoriaDeInnovacionRoute: typeof ConsultoriaDeInnovacionRoute
   PlanesRoute: typeof PlanesRoute
   PodcastRoute: typeof PodcastRoute
   ServiciosRoute: typeof ServiciosRoute
@@ -93,6 +122,13 @@ declare module '@tanstack/react-router' {
       path: '/brujula'
       fullPath: '/brujula'
       preLoaderRoute: typeof BrujulaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consultoria-de-innovacion': {
+      id: '/consultoria-de-innovacion'
+      path: '/consultoria-de-innovacion'
+      fullPath: '/consultoria-de-innovacion'
+      preLoaderRoute: typeof ConsultoriaDeInnovacionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/planes': {
@@ -122,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BrujulaRoute: BrujulaRoute,
+  ConsultoriaDeInnovacionRoute: ConsultoriaDeInnovacionRoute,
   PlanesRoute: PlanesRoute,
   PodcastRoute: PodcastRoute,
   ServiciosRoute: ServiciosRoute,
